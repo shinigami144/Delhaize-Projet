@@ -12,8 +12,8 @@ if(isset($nom) && isset($prenom) && isset($mail1) && isset($mail2) && isset($pas
     if(($mail1==$mail2)&&($pass1==$pass2)){
         echo 'ok';
     }
-    else{
-        echo 'pas bon';
-    }
+    else {
+        headerLocation("index.php");
+    }    
 }
 ?>

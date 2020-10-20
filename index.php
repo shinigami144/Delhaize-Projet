@@ -45,7 +45,8 @@
                     <h1>Connection</h1>
                     <form action="connection.php" method="POST">
                         email : <input type="email" name="mail1"/><br/>
-                        mot de passe : <input type="password" name="pass1"/><br/>
+                        mot de passe : <input type="password" name="pass1"/><br/><br/>
+                        <a href="#mpoublie">Mot de passe oublié</a><br/><br/>
                         <input type="submit"  value="envoyer"/>
                     </form>
                 </td>
