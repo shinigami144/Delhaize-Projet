@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Erstellungszeit: 20. Okt 2020 um 08:36
+-- Erstellungszeit: 20. Okt 2020 um 08:46
 -- Server-Version: 8.0.18
 -- PHP-Version: 7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `delhaize`
 --
+CREATE DATABASE IF NOT EXISTS `delhaize` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `delhaize`;
 
 -- --------------------------------------------------------
 
