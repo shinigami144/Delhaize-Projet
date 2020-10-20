@@ -1,21 +1,39 @@
-<!DOCTYPE HTML> 
-<html> 
+<!DOCTYPE HTML>
+
 
 <head> 
 	<title> 
-		How to create an image element 
-		dynamically using JavaScript ? 
+		ImageAnim
 	</title>	 
 </head> 
 
 <body id = "body" style = "text-align:center;"> 
+    <audio autoplay loop>
+  <source src="Assets/Test.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 	
 	<script> 
 
         var img = document.createElement('img'); 
-        img.src = "Assets/Test.jpg"; 
+        var id = setInterval(frame, 120);
+        var count = 1;
+
+        function frame() {
+            
+            if(count<10){
+              img.src = "Assets/Frame-0"+ count +".gif";   
+                
+            }else{
+                img.src = "Assets/Frame-"+ count +".gif"; 
+            }
+            if(count==37){
+                count =0;
+            }
+            count == count++;
+        }
         document.body.appendChild(img); 
-        down.innerHTML = "Image Element Added."; 
+        
 
 	</script> 
 </body> 
