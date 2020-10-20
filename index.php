@@ -25,16 +25,31 @@
         }
         //connection
         ?>
-        <form action="insert.php" method="POST">
-            Nom : <input type="txt" name="nom" /> <br/>
-            Prénom : <input type="txt" name="prenom" /> <br/>
-            email : <input type="email" name="mail1"/>.<br/>
-			confirmation email : <input type="email" name="mail2"/> <br/>
-            mot de passe : <input type="password" name="pass1"/> <br/>
-            confirmation mot de passe : <input type="password" name="pass2"/> <br/>
-			adresse : <input type="txt" name="adresse" /> <br/>
-            code postal : <input type="number" name="cp" /> <br/>
-            <input type="submit"  value="envoyer"/>
-        </form>
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <h1>Inscription</h1>
+                    <form action="insert.php" method="POST">
+                        Nom : <input type="txt" name="nom" /> <br/>
+                        Prénom : <input type="txt" name="prenom" /> <br/>
+                        email : <input type="email" name="mail1"/>.<br/>
+			            confirmation email : <input type="email" name="mail2"/> <br/>
+                        mot de passe : <input type="password" name="pass1"/> <br/>
+                        confirmation mot de passe : <input type="password" name="pass2"/> <br/>
+			            adresse : <input type="txt" name="adresse" /> <br/>
+                        code postal : <input type="number" name="cp" /> <br/>
+                        <input type="submit"  value="envoyer"/>
+                    </form>
+                </td>
+                <td>
+                    <h1>Connection</h1>
+                    <form action="connection.php" method="POST">
+                        email : <input type="email" name="mail1"/><br/>
+                        mot de passe : <input type="password" name="pass1"/><br/>
+                        <input type="submit"  value="envoyer"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>
