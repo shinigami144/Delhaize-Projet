@@ -17,7 +17,7 @@
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
-        $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+        $dsn = "mysql:host=$host;dbname=$db";
         try {
             $pdo = new PDO($dsn, $user, $pass, $options);
         } catch (\PDOException $e) {
