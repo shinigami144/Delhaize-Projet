@@ -1,0 +1,46 @@
+<html>   
+    <body>
+    </body>
+    <script>
+        
+        class Joueur{
+            constructor(sexe,race,pseudo,password){
+                this.sexe = sexe;
+                this.race = race;
+                this.pseudo = pseudo;
+                this.password = password;
+            } 
+            
+            ChangePseudo(nouveau){
+                this.pseudo = nouveau;
+            }
+        }  
+        
+        class Op extends Joueur{
+            constructor(sexe,race,pseudo,password){
+                super(sexe,race,pseudo,password);
+                this.money = Math.round(Math.random()*100);
+            }    
+        }
+        
+        var tabJoueurs = [];
+        var box = document.createElement("INPUT");
+        box.setAttribute("type", "text");
+        box.setAttribute("value", "Pseudo");
+        document.body.appendChild(box);
+        
+        var valider = document.createElement("button");
+        valider.innerHTML="Valider";
+        document.body.appendChild(valider);
+        
+        valider.addEventListener("click",add);
+        
+        function add(e){
+            noobie = new Joueur("Masculin","Humain",box.value,"666satan");
+            tabJoueurs.push(noobie);
+            console.log(tabJoueurs);
+        }
+        
+        
+    </script>
+</html>
