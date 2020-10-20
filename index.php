@@ -7,7 +7,7 @@
         <?php
         require_once('db.php'); 
 	
-        $host = '127.0.0.1:3308';
+        $host = '127.0.0.1';
         $db   = 'delhaize';
         $user = 'root';
         $pass = '';
@@ -17,7 +17,7 @@
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
 
-        $dsn = "mysql:host=$host;dbname=$db";
+        $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
         try {
             $pdo = new PDO($dsn, $user, $pass, $options);
         } catch (\PDOException $e) {
