@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Erstellungszeit: 20. Okt 2020 um 08:12
+-- Erstellungszeit: 20. Okt 2020 um 08:36
 -- Server-Version: 8.0.18
 -- PHP-Version: 7.3.12
 
