@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CreateJS</title>
+</head>
+    <body>
+        <canvas id="monSuperCanvas"></canvas>
+    </body>
+    <script src="./lib/easeljs-NEXT.combined.js"></script>
+    <script>
+        var canvas = document.getElementById("monSuperCanvas");
+        canvas.width=600;
+        canvas.height=600;
+        var scene = new createjs.Stage("monSuperCanvas");
+        var cabine = new createjs.Shape();
+        var rouehautgauche = new createjs.Shape();
+        var rouehautdroite = new createjs.Shape();
+        var rouebasgauche = new createjs.Shape();
+        var rouebasdroite = new createjs.Shape();
+        var back = new createjs.Shape();
+        var voiture = new createjs.Container();
+        var vx = 0;
+        var vy = 0;
+        var start = 0;
+        back.graphics.beginFill("rgb(0,188,0)");
+        back.graphics.drawRect(0,-600,600,1200);
+        back.graphics.beginFill("rgb(100,100,100)");
+        back.graphics.drawRect(100,-600,400,1200);
+        for(var cpt=-6;cpt<6;cpt++){
+            back.graphics.beginFill("rgb(255,255,255)");
+            back.graphics.drawRect(290,cpt*100,20,50);    
+        }
+        back.graphics.endFill();
+        scene.addChild(back);
+        voiture.addChild(cabine);
+        voiture.addChild(rouehautgauche);
+        voiture.addChild(rouehautdroite);
+        voiture.addChild(rouebasgauche);
+        voiture.addChild(rouebasdroite);
+        rouehautgauche.graphics.beginFill("rgb(0,0,0)");
+        rouehautgauche.graphics.drawRect(-10,-20,20,40);
+        rouehautgauche.x=10;
+        rouehautgauche.y=20;
+        rouehautgauche.graphics.endFill();
+        rouehautdroite.graphics.beginFill("rgb(0,0,0)");
+        rouehautdroite.graphics.drawRect(-10,-20,20,40);
+        rouehautdroite.x=140;
+        rouehautdroite.y=20;
+        rouehautdroite.graphics.endFill();
+        rouebasgauche.graphics.beginFill("rgb(0,0,0)");
+        rouebasgauche.graphics.drawRect(-10,-20,20,40);
+        rouebasgauche.x=10;
+        rouebasgauche.y=180;
+        rouebasgauche.graphics.endFill();
+        rouebasdroite.graphics.beginFill("rgb(0,0,0)");
+        rouebasdroite.graphics.drawRect(-10,-20,20,40);
+        rouebasdroite.x=140;
+        rouebasdroite.y=180;
+        rouebasdroite.graphics.endFill();
+        cabine.graphics.beginFill("rgb(20,84,133)");
+        cabine.graphics.drawRect(0,0,100,200);
+        cabine.x=25;
+        cabine.y=0;
+        cabine.graphics.endFill();
+        scene.addChild(voiture); 
+        voiture.x=225;
+        voiture.y=400;
+        document.addEventListener("keydown", down);
+        document.addEventListener("keyup", up);
+        var id = window.setInterval(update,1);
+        
+         function down(e){
+            switch(e.keyCode){
+                case 37:
+                    rouehautgauche.rotation=-45;
+                    rouehautdroite.rotation=-45;
+                    vx=-1;
+                    break;
+                case 38:
+                    start=1;
+                    break;
+                case 39:
+                    rouehautgauche.rotation=45;
+                    rouehautdroite.rotation=45;
+                    vx=1;
+                    break;
+                   }
+
+        }
+        
+        function up(e){
+            switch(e.keyCode){
+                case 37:
+                    rouehautgauche.rotation=0;
+                    rouehautdroite.rotation=0;
+                    vx=0;
+                    break;
+                case 38:
+                    start=0;
+                    vy=0;
+                    break;
+                case 39:
+                    rouehautgauche.rotation=0;
+                    rouehautdroite.rotation=0;
+                    vx=0;
+                    break;
+                   }
+
+        
+        
+        function update(){
+            voiture.x+=vx;
+            if(voiture.x<0){
+                voiture.x=0;
+            }
+            if(voiture.x>450){
+                voiture.x=450;
+            }
+            if(start==1){
+                if((voiture.x<100)||(voiture.x>350)){
+                    if (vy>3){
+                        vy-=0.1;
+                    }    
+                }else{
+                    vy=6;    
+                }
+            }
+            back.y+=vy;
+            if(back.y>600){
+                back.y=0;
+            }
+            scene.update();
+        }
+        
+        
+    </script>
+</html>
