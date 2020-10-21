@@ -4,39 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <style>
-        img{
-            display: block;
-            margin: 0 0 0 0;
-            width: 100%;
-            height: 100%;
+        image{
+            margin :0;
         }
+
     </style>
 </head>
 <body>
-    <div id="tuileGestionnaire">
-        <img src="Asset/tuile/tuileTest2.png" id="tuileDessu">
-        <img src="Asset/tuile/tuileTest1.png" id="tuileDessou">
-    </div>
+    <canvas id="monSuperCanvas"></canvas>
    
 </body>
-
+<script src="./lib/Easeljs-1.0.0//lib/easeljs-NEXT.min.js"></script>
 <script>
-    function Run(){
-        
+    // Canevas Creation
+    var canvas = document.getElementById("monSuperCanvas");
+    canvas.width= window.innerWidth;
+    canvas.height= window.innerHeight;
+    var scene = new createjs.Stage("monSuperCanvas");
+    var back = new createjs.Shape();
+    var hPosTuile1;
+    var hPosTuile2;
+    var tuile1;
+    var tuile2;
+    var idInterval;
+    // Creation des Première tuile
+    var ImageTuile1 = new Image();
+    ImageTuile1.src = "Asset/tuile/tuileTest1.png";
+    ImageTuile1.onload = function(){
+        hPosTuile1 = 0;
+        tuile1 = new createjs.Bitmap(ImageTuile1);
+        scene.addChild(tuile1);
     }
-    // DEMANDE EN PLUS 
-    // UN RUNNER ? 
-    // SYSTEME DE SCORING -> A LA FIN IL S identifie
-    // JOUE DIRECTEMENT -> A LA FIN DU JEU ON S INCRIT
-    // ON NE DEMANDE QUE LE MAIL ET SON NUMERO DE TICKET ( ET NO VERIFICATION ) -> SEUL LE NUMERO DU TICKET VERIFIE
-    // FAIRE UN PROTO
-    // 
-    //
-    //
-    //
-    //
-    //
-    //
+    var ImageTuile2 = new Image();
+    ImageTuile2.src = "Asset/tuile/tuileTest2.png"
+    ImageTuile2.onload = function(){
+        hPosTuile2 = -ImageTuile2.height;
+        tuile2 = new createjs.Bitmap(ImageTuile2);
+        scene.addChild(tuile2);
+        idInterval=window.setInterval(update,1);
+    }
+    console.log("Image height" + ImageTuile1.height);
+    //scene.addChild(tuile2);
+    //scene.addChild(back);
+    
+    var boolGameBegin = false;
+
+    function update(){
+        if(boolGameBegin == true){
+            hPosTuile1+=1;
+            hPosTuile2+=1;
+            //console.log(hPosTuile2,hPosTuile1);
+            hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
+            hPosTuile2 =  ResetTuileUp(tuile2,hPosTuile2);
+        }
+        tuile2.setTransform(0,hPosTuile2);
+        tuile1.setTransform(0,hPosTuile1);
+        
+        scene.update();
+    }
+
+    function ResetTuileUp(tuile,positionH){
+        console.log(positionH,canvas.height,tuile);
+        if(positionH> canvas.height){
+            positionH =-tuile.image.height;
+        }
+        return positionH;
+    }
+
+    // TODO 
+    function ResizeAuto(){
+
+    }
 </script>
 </html>
