@@ -113,7 +113,7 @@
                     vy = 0.05
                 }
             }
-            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x-100>obstacleblue.x && boule.x-100< obstacleblue.x-100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+             if(boule.x>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>120+(200*(obstacle.length-cpt)) && terrain.y<142+(200*(obstacle.length-cpt))){
                 if(vy>0.10){
                     vy = vy/2
                 }else{
