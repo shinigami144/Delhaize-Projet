@@ -8,7 +8,7 @@
         <canvas id="monSuperCanvas"></canvas>
     </body>
     <button onclick="openFullscreen();">Open Fullscreen</button>
-    <script src="./lib/Easeljs-1.0.0/lib/easeljs-NEXT.min.js"></script>
+    <script src="./lib/Easeljs-1.0.0/lib/easeljs.min.js"></script>
     <script>
         var canvas = document.getElementById("monSuperCanvas");
         function openFullscreen() {
@@ -26,10 +26,6 @@
         var scene = new createjs.Stage("monSuperCanvas");
         var boule = new createjs.Shape();
         var obstacleblue = new createjs.Shape();
-        obstacleblue.graphics.beginFill("rgb(0,188,0)");
-        obstacleblue.graphics.drawRect(500,500,10,10);
-        obstacleblue.graphics.endFill();
-        scene.addChild(obstacleblue);
         var obstaclevert = new createjs.Shape();
         var back = new createjs.Shape();
         var terrain = new createjs.Container();
@@ -37,29 +33,34 @@
         var vy = 0;
         var start = 0;
         back.graphics.beginFill("rgb(0,188,0)");
-        back.graphics.drawRect(0,-600,canvas.width,canvas.height*2);
+        back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
         back.graphics.beginFill("rgb(100,100,100)");
-        back.graphics.drawRect(canvas.width/4,-600,canvas.width/2,canvas.height*2);
-        for(var cpt=-6;cpt<6;cpt++){
+        back.graphics.drawRect(canvas.width/4,-(canvas.height*3),canvas.width/2,canvas.height*4);
+        for(var cpt=-30;cpt<6;cpt++){
             back.graphics.beginFill("rgb(255,255,255)");
             back.graphics.drawRect(canvas.width/2-10,cpt*100,20,50);    
         }
         back.graphics.endFill();
-        var obstacleblue = new createjs.Shape();
         obstacleblue.graphics.beginFill("rgb(0,188,220)");
-        obstacleblue.graphics.drawRect(500,00,10,10);
+        obstacleblue.graphics.drawRect(0,0,100,10);
         obstacleblue.graphics.endFill();
+        obstaclevert.graphics.beginFill("rgb(0,188,0)");
+        obstaclevert.graphics.drawRect(0,0,100,10);
+        obstaclevert.graphics.endFill();
         terrain.addChild(back);
-        terrain.addChild(obstacleblue);
-        scene.addChild(terrain);
+        terrain.addChild(obstaclevert);
+        obstacleblue.x = canvas.width/2;
+        obstacleblue.y = 0;
+        scene.addChild(terrain);     
+        scene.addChild(obstacleblue);
         boule.graphics.beginFill("rgb(255,255,255)");
         boule.graphics.drawCircle(0,0,50);
         boule.x=25;
         boule.y=0;
         boule.graphics.endFill();
         scene.addChild(boule); 
-        boule.x=225;
-        boule.y=400;
+        boule.x=canvas.width/2;
+        boule.y=innerHeight-50;
         document.addEventListener("keydown", down);
         document.addEventListener("keyup", up);
         var id = window.setInterval(update,1);
@@ -106,14 +107,25 @@
                     vy = 0.05
                 }
             }
+            if(boule.x>obstacleblue.x && boule.x< obstacleblue.x+100 && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+                if(vy>0.10){
+                    vy = vy/2
+                }else{
+                    vy = 0.05
+                }
+            }
             if(vy<.88){
+                boule.graphics.drawCircle(0,0,50*vy);
+                scene.addChild(boule); 
                 vy+=0.001;
             }
             terrain.y+=vy;
-            if(terrain.y>canvas.height){
+            obstacleblue.y+=vy;
+            if(terrain.y>canvas.height*3){
                 terrain.y=0;
             }
             scene.update();
+            console.log(boule.x)
         }
         }
         
