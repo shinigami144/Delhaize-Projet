@@ -5,21 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    <style>
-        img{
-            margin :0;
-            display: none;
-        }
-
-    </style>
+    <style></style>
 </head>
 <body>
     <canvas id="monSuperCanvas"></canvas>
-   
+    <button onclick="openFullscreen();">Open Fullscreen</button>
 </body>
-<script src="./lib/Easeljs-1.0.0//lib/easeljs-NEXT.min.js"></script>
+<script src="./lib/Easeljs-1.0.0/lib/easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script>
+    function openFullscreen() {
+        if (canvas.requestFullscreen)
+        {
+            canvas.requestFullscreen();
+        } 
+        else if (canvas.mozRequestFullScreen) 
+        { /* Firefox */
+            canvas.mozRequestFullScreen();
+          
+        } 
+        else if (canvas.webkitRequestFullscreen) 
+        { /* Chrome, Safari and Opera */
+            canvas.webkitRequestFullscreen();
+        } 
+        else if (canvas.msRequestFullscreen) 
+        { /* IE/Edge */
+        canvas.msRequestFullscreen();
+        }
+    }
+
     // loading all assets
     var Q = new createjs.LoadQueue();
     Q.on("complete",completeLoading,this);
@@ -44,7 +58,7 @@
     // variable
     var canevas;
     var scene;
-    var back;
+    var terrain;
     var hPosTuile1;
     var hPosTuile2;
     var tuile1;
@@ -53,20 +67,27 @@
     var idNextTuile;
     var boolGameBegin=false;
     var ConstImageHeight;
+    var boule;
+    var obstacleblue;
+    var obstaclevert;
+    var vx = 0;
+    vy = 0.22;
+    var start = 0;
 
     function completeLoading(event){
         initGame();
         idInterval = window.setInterval(update,1);
     }
 
-
     function initGame(){
         // init canevas
+        document.addEventListener("keydown", down);
+        document.addEventListener("keyup", up);
         canvas = document.getElementById("monSuperCanvas");
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
         scene = new createjs.Stage("monSuperCanvas");
-        back = new createjs.Shape();
+        terrain = new createjs.Container();
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
@@ -76,15 +97,73 @@
         hPosTuile2 = -Q.getResult("T2").height;
         console.log(ConstImageHeight)
         idNextTuile=3;
-
+        // init obstacle vert
+        obstaclevert = new createjs.Shape();
+        obstaclevert.graphics.beginFill("rgb(0,188,0)");
+        obstaclevert.graphics.drawRect(0,0,100,10);
+        obstaclevert.graphics.endFill();
+        // init obstacle bleu
+        obstacleblue = new createjs.Shape();
+        obstacleblue.graphics.beginFill("rgb(0,188,220)");
+        obstacleblue.graphics.drawRect(0,0,100,10);
+        obstacleblue.graphics.endFill();
+        obstacleblue.x = canvas.width/2;
+        obstacleblue.y = 0;
+        // init boule
+        boule.graphics.beginFill("rgb(255,255,255)");
+        boule.graphics.drawCircle(0,0,50);
+        boule.x=25;
+        boule.y=0;
+        boule.graphics.endFill();
+        boule.x=canvas.width/2;
+        boule.y=innerHeight-50;
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
-        
-
+        terrain.addChild(obstacleblue);
+        terrain.addChild(obstaclevert);
+        scene.addChild(terrain);
     }
 
     function update(){
+        boule.x+=vx;
+        if(boule.x<canvas.width/4+50){
+            boule.x=canvas.width/4+50;
+            if(vy>0.10)
+            {
+                vy = vy/2
+            }
+            else{
+                 vy = 0.05
+            }
+        }
+        if(boule.x>(canvas.width/4)*3-50){
+            boule.x=(canvas.width/4)*3-50;
+            if(vy>0.10){
+                vy = vy/2
+            }
+            else{
+                vy = 0.05
+            }
+        }
+        if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+            if(vy>0.10){
+                vy = vy/2
+            }
+            else
+            {
+                vy = 0.05
+            }
+        }
+        if(vy<.88){
+            vy+=0.001;
+        }
+        terrain.y+=vy;
+        obstacleblue.y+=vy;
+        if(terrain.y>canvas.height*3){
+            terrain.y=0;
+            obstacleblue.y = canvas.width/2;
+        }
         if(boolGameBegin == true){
             hPosTuile1+=1;
             hPosTuile2+=1;
@@ -100,8 +179,6 @@
             boolGameBegin = false;
         }
     }
-
-    
 
     function ResetTuileUp(tuile,positionH){
         if(positionH> canvas.height){
@@ -119,5 +196,31 @@
     function ResizeAuto(){
 
     }
+
+    // Movement Function 
+    function down(e){
+            switch(e.keyCode){
+                case 37:
+                    vx=-2.2;
+                    break;
+                case 39:
+                    vx=2.2;
+                    break;
+                   }
+
+        }
+        
+    function up(e){
+            switch(e.keyCode){
+                case 37:
+                    vx=0;
+                    break;
+                case 39:
+                    vx=0;
+                    break;
+                   }
+        }
+        
+    
 </script>
 </html>
