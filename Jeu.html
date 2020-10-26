@@ -47,14 +47,17 @@
         obstacleblue.graphics.beginFill("rgb(0,188,220)");
         obstacleblue.graphics.drawRect(0,0,100,10);
         obstacleblue.graphics.endFill();
-        obstaclevert.graphics.beginFill("rgb(0,188,0)");
+        obstaclevert.graphics.beginFill("rgb(0,255,0)");
         obstaclevert.graphics.drawRect(0,0,100,10);
         obstaclevert.graphics.endFill();
         terrain.addChild(back);
-        terrain.addChild(obstaclevert);
+        scene.addChild(obstaclevert);
         obstacleblue.x = canvas.width/2;
         obstacleblue.y = 0;
-        scene.addChild(terrain);     
+        obstaclevert.x = canvas.width/4;
+        obstaclevert.y = -300;
+        scene.addChild(terrain);  
+        scene.addChild(obstaclevert);
         scene.addChild(obstacleblue);
         boule.graphics.beginFill("rgb(255,255,255)");
         boule.graphics.drawCircle(0,0,50);
@@ -110,7 +113,7 @@
                     vy = 0.05
                 }
             }
-            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x-100>obstacleblue.x && boule.x-100< obstacleblue.x-100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
                 if(vy>0.10){
                     vy = vy/2
                 }else{
@@ -122,11 +125,20 @@
             }
             terrain.y+=vy;
             obstacleblue.y+=vy;
+            obstaclevert.y+=vy;
+            /*if(boule.scaleX<2){
+                boule.scaleX+=vy/2000;
+                boule.scaleY+=vy/2000;
+                boule.setBounds(boule.x,boule.y,boule.nominalBounds.x,boule.nominalBounds.y)
+                boule = boule.getBounds();
+            }*/
             if(terrain.y>canvas.height*3){
                 terrain.y=0;
-                obstacleblue.y = canvas.width/2;
+                obstacleblue.y = 0;
+                obstaclevert.x = -200;
             }
             scene.update();
+            console.log(boule.width);
         }
         }
         
