@@ -11,6 +11,7 @@
     <script src="./lib/Easeljs-1.0.0/lib/easeljs.min.js"></script>
     <script>
         var canvas = document.getElementById("monSuperCanvas");
+        
         function openFullscreen() {
           if (canvas.requestFullscreen) {
             canvas.requestFullscreen();
@@ -21,6 +22,7 @@
           } else if (canvas.msRequestFullscreen) { /* IE/Edge */
             canvas.msRequestFullscreen();
           }
+            
         canvas.width=window.innerWidth;
         canvas.height=window.innerHeight;
         var scene = new createjs.Stage("monSuperCanvas");
@@ -32,6 +34,7 @@
         var vx = 0;
         var vy = 0;
         var start = 0;
+            
         back.graphics.beginFill("rgb(0,188,0)");
         back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
         back.graphics.beginFill("rgb(100,100,100)");
@@ -91,23 +94,23 @@
         
         function update(){
             boule.x+=vx;
-            if(boule.x<51){
-                boule.x=50;
+            if(boule.x<canvas.width/4+50){
+                boule.x=canvas.width/4+50;
                 if(vy>0.10){
                     vy = vy/2
                 }else{
                     vy = 0.05
                 }
             }
-            if(boule.x>canvas.width-49){
-                boule.x=canvas.width-50;
+            if(boule.x>(canvas.width/4)*3-50){
+                boule.x=(canvas.width/4)*3-50;
                 if(vy>0.10){
                     vy = vy/2
                 }else{
                     vy = 0.05
                 }
             }
-            if(boule.x>obstacleblue.x && boule.x< obstacleblue.x+100 && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
                 if(vy>0.10){
                     vy = vy/2
                 }else{
@@ -115,17 +118,15 @@
                 }
             }
             if(vy<.88){
-                boule.graphics.drawCircle(0,0,50*vy);
-                scene.addChild(boule); 
                 vy+=0.001;
             }
             terrain.y+=vy;
             obstacleblue.y+=vy;
             if(terrain.y>canvas.height*3){
                 terrain.y=0;
+                obstacleblue.y = canvas.width/2;
             }
             scene.update();
-            console.log(boule.x)
         }
         }
         
