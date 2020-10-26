@@ -23,122 +23,122 @@
             canvas.msRequestFullscreen();
           }
             
-        canvas.width=window.innerWidth;
-        canvas.height=window.innerHeight;
-        var scene = new createjs.Stage("monSuperCanvas");
-        var boule = new createjs.Shape();
-        var obstacleblue = new createjs.Shape();
-        var back = new createjs.Shape();
-        var terrain = new createjs.Container();
-        var vx = 0;
-        var vy = 0;
-        var start = 0;
-        var obstacle = [];
-        var i = 0;
-            
-        back.graphics.beginFill("rgb(0,188,0)");
-        back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
-        back.graphics.beginFill("rgb(100,100,100)");
-        back.graphics.drawRect(canvas.width/4,-(canvas.height*3),canvas.width/2,canvas.height*4);
-        for(var cpt=-30;cpt<10;cpt++){
-            back.graphics.beginFill("rgb(255,255,255)");
-            back.graphics.drawRect(canvas.width/2-10,cpt*100,20,50);    
-        }
-        back.graphics.endFill();
-            
-        for(var cpt=-8;cpt<3;cpt++){
-            obstacleblue.graphics.beginFill("rgb(0,188,220)");
-            obstacle.push(Math.floor(Math.random()*3));
-            obstacleblue.graphics.drawRect(obstacle[i]*canvas.width/6,cpt*200,canvas.width/6,10); 
-            i++;
-        }
-        obstacleblue.graphics.endFill();
-        obstacleblue.x=canvas.width/4;
-        terrain.addChild(back);
-        scene.addChild(terrain);  
-        scene.addChild(obstacleblue);
-        boule.graphics.beginFill("rgb(255,255,255)");
-        boule.graphics.drawCircle(0,0,(canvas.width/400)*8.25);
-        boule.x=25;
-        boule.y=0;
-        boule.graphics.endFill();
-        scene.addChild(boule); 
-        boule.x=canvas.width/2;
-        boule.y=innerHeight-50;
-        document.addEventListener("keydown", down);
-        document.addEventListener("keyup", up);
-        var id = window.setInterval(update,1);
-        vy=0.22;
-        function down(e){
-            switch(e.keyCode){
-                case 37:
-                    vx=-2.2;
-                    break;
-                case 39:
-                    vx=2.2;
-                    break;
-                   }
+            canvas.width=window.innerWidth;
+            canvas.height=window.innerHeight;
+            var scene = new createjs.Stage("monSuperCanvas");
+            var boule = new createjs.Shape();
+            var obstacleblue = new createjs.Shape();
+            var back = new createjs.Shape();
+            var terrain = new createjs.Container();
+            var vx = 0;
+            var vy = 0;
+            var start = 0;
+            var obstacle = [];
+            var i = 0;
 
-        }
-        
-        function up(e){
-            switch(e.keyCode){
-                case 37:
-                    vx=0;
-                    break;
-                case 39:
-                    vx=0;
-                    break;
-                   }
-        }
-        
-        
-        function update(){
-            boule.x+=vx;
-            if(boule.x<canvas.width/4+(canvas.width/400)*8.25){
-                boule.x=canvas.width/4+(canvas.width/400)*8.25;
-                if(vy>0.10){
-                    vy = vy/2
-                }else{
-                    vy = 0.05
+            back.graphics.beginFill("rgb(0,188,0)");
+            back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
+            back.graphics.beginFill("rgb(100,100,100)");
+            back.graphics.drawRect(canvas.width/4,-(canvas.height*3),canvas.width/2,canvas.height*4);
+            for(var cpt=-30;cpt<10;cpt++){
+                back.graphics.beginFill("rgb(255,255,255)");
+                back.graphics.drawRect(canvas.width/2-10,cpt*100,20,50);    
+            }
+            back.graphics.endFill();
+
+            obstacleblue.x=canvas.width/4;
+            for(var cpt=-8;cpt<3;cpt++){
+                obstacleblue.graphics.beginFill("rgb(0,188,220)");
+                obstacle.push(Math.floor(Math.random()*3));
+                obstacleblue.graphics.drawRect(obstacle[i]*canvas.width/6,cpt*200,canvas.width/6,10); 
+                i++;
+            }
+            obstacleblue.graphics.endFill();
+            terrain.addChild(back);
+            scene.addChild(terrain);  
+            scene.addChild(obstacleblue);
+            boule.graphics.beginFill("rgb(255,255,255)");
+            boule.graphics.drawCircle(0,0,(canvas.width/400)*8.25);
+            boule.x=25;
+            boule.y=0;
+            boule.graphics.endFill();
+            scene.addChild(boule); 
+            boule.x=canvas.width/2;
+            boule.y=innerHeight-50;
+            document.addEventListener("keydown", down);
+            document.addEventListener("keyup", up);
+            var id = window.setInterval(update,1);
+            vy=0.22;
+            function down(e){
+                switch(e.keyCode){
+                    case 37:
+                        vx=-2.2;
+                        break;
+                    case 39:
+                        vx=2.2;
+                        break;
+                       }
+
+            }
+
+            function up(e){
+                switch(e.keyCode){
+                    case 37:
+                        vx=0;
+                        break;
+                    case 39:
+                        vx=0;
+                        break;
+                       }
+            }
+
+
+            function update(){
+                boule.x+=vx;
+                if(boule.x<canvas.width/4+(canvas.width/400)*8.25){
+                    boule.x=canvas.width/4+(canvas.width/400)*8.25;
+                    if(vy>0.10){
+                        vy = vy/2
+                    }else{
+                        vy = 0.05
+                    }
                 }
-            }
-            if(boule.x>(canvas.width/4)*3-(canvas.width/400)*8.25){
-                boule.x=(canvas.width/4)*3-(canvas.width/400)*8.25;
-                if(vy>0.10){
-                    vy = vy/2
-                }else{
-                    vy = 0.05
+                if(boule.x>(canvas.width/4)*3-(canvas.width/400)*8.25){
+                    boule.x=(canvas.width/4)*3-(canvas.width/400)*8.25;
+                    if(vy>0.10){
+                        vy = vy/2
+                    }else{
+                        vy = 0.05
+                    }
                 }
-            }
-            for(var cpt=0;cpt<obstacle.length;cpt++){
-                if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x-100>obstacleblue.x && boule.x-100< obstacleblue.x-100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
-                if(vy>0.10){
-                    vy = vy/2
-                }else{
-                    vy = 0.05
+                /*for(var cpt=obstacle.length;cpt>0;cpt--){
+                    if(boule.x>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y && terrain.y<342){
+                        if(vy>0.10){
+                            vy = vy/2
+                        }else{
+                            vy = 0.01
+                        }
+                    } 
+                }*/
+                if(vy<.88){
+                    vy+=0.001;
                 }
-            } 
+                terrain.y+=vy;
+                obstacleblue.y+=vy;
+                /*if(boule.scaleX<2){
+                    boule.scaleX+=vy/2000;
+                    boule.scaleY+=vy/2000;
+                    boule.setBounds(boule.x,boule.y,boule.nominalBounds.x,boule.nominalBounds.y)
+                    boule = boule.getBounds();
+                }*/
+                if(terrain.y>canvas.height*3){
+                    terrain.y=0;
+                    obstacleblue.y = 0;
+                }
+                scene.update();
+                console.log(terrain.y,boule.y)
             }
-            if(vy<.88){
-                vy+=0.001;
-            }
-            terrain.y+=vy;
-            obstacleblue.y+=vy;
-            /*if(boule.scaleX<2){
-                boule.scaleX+=vy/2000;
-                boule.scaleY+=vy/2000;
-                boule.setBounds(boule.x,boule.y,boule.nominalBounds.x,boule.nominalBounds.y)
-                boule = boule.getBounds();
-            }*/
-            if(terrain.y>canvas.height*3){
-                terrain.y=0;
-                obstacleblue.y = 0;
-            }
-            scene.update();
         }
-        }
-        
         
     </script>
 </html>
