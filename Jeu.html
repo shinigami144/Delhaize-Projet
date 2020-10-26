@@ -92,7 +92,7 @@
                        }
             }
 
-
+            console.log(obstacle);
             function update(){
                 boule.x+=vx;
                 if(boule.x<canvas.width/4+(canvas.width/400)*8.25){
@@ -111,15 +111,15 @@
                         vy = 0.05
                     }
                 }
-                /*for(var cpt=obstacle.length;cpt>0;cpt--){
-                    if(boule.x>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y && terrain.y<342){
+                for(var cpt=obstacle.length;cpt>0;cpt--){
+                    if(boule.x>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>120+(200*(obstacle.length-cpt)) && terrain.y<142+(200*(obstacle.length-cpt))){
                         if(vy>0.10){
                             vy = vy/2
                         }else{
-                            vy = 0.01
+                            vy = 0.05
                         }
                     } 
-                }*/
+                }
                 if(vy<.88){
                     vy+=0.001;
                 }
@@ -136,7 +136,6 @@
                     obstacleblue.y = 0;
                 }
                 scene.update();
-                console.log(terrain.y,boule.y)
             }
         }
         
