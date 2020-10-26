@@ -8,29 +8,34 @@
     <style></style>
 </head>
 <body>
+    <button onclick="openFullscreen(initGame);">Open Fullscreen</button>
     <canvas id="monSuperCanvas"></canvas>
-    <button onclick="openFullscreen();">Open Fullscreen</button>
 </body>
 <script src="./lib/Easeljs-1.0.0/lib/easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script>
-    function openFullscreen() {
+ 
+    function openFullscreen(callback) {
         if (canvas.requestFullscreen)
         {
             canvas.requestFullscreen();
+            callback();
         } 
         else if (canvas.mozRequestFullScreen) 
         { /* Firefox */
             canvas.mozRequestFullScreen();
+            callback();
           
         } 
         else if (canvas.webkitRequestFullscreen) 
         { /* Chrome, Safari and Opera */
             canvas.webkitRequestFullscreen();
+            callback();
         } 
         else if (canvas.msRequestFullscreen) 
         { /* IE/Edge */
-        canvas.msRequestFullscreen();
+            canvas.msRequestFullscreen();
+            callback();
         }
     }
 
@@ -56,7 +61,7 @@
     
 
     // variable
-    var canevas;
+    var canvas
     var scene;
     var terrain;
     var hPosTuile1;
@@ -65,25 +70,22 @@
     var tuile2;
     var idInterval
     var idNextTuile;
-    var boolGameBegin=false;
+    var boolGameBegin=true;
     var ConstImageHeight;
     var boule;
     var obstacleblue;
     var obstaclevert;
     var vx = 0;
     vy = 0.22;
-    var start = 0;
 
     function completeLoading(event){
-        initGame();
-        idInterval = window.setInterval(update,1);
+        canvas = document.getElementById("monSuperCanvas");
     }
 
     function initGame(){
         // init canevas
         document.addEventListener("keydown", down);
         document.addEventListener("keyup", up);
-        canvas = document.getElementById("monSuperCanvas");
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
         scene = new createjs.Stage("monSuperCanvas");
@@ -110,6 +112,8 @@
         obstacleblue.x = canvas.width/2;
         obstacleblue.y = 0;
         // init boule
+         
+        boule = new createjs.Shape();
         boule.graphics.beginFill("rgb(255,255,255)");
         boule.graphics.drawCircle(0,0,50);
         boule.x=25;
@@ -120,13 +124,17 @@
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
+        scene.addChild(boule);
         terrain.addChild(obstacleblue);
         terrain.addChild(obstaclevert);
         scene.addChild(terrain);
+        idInterval = window.setInterval(update,1);
     }
 
     function update(){
+        
         boule.x+=vx;
+        
         if(boule.x<canvas.width/4+50){
             boule.x=canvas.width/4+50;
             if(vy>0.10)
@@ -165,8 +173,8 @@
             obstacleblue.y = canvas.width/2;
         }
         if(boolGameBegin == true){
-            hPosTuile1+=1;
-            hPosTuile2+=1;
+            hPosTuile1+=vy;
+            hPosTuile2+=vy;
             //console.log(hPosTuile2,hPosTuile1);
             hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
             hPosTuile2 = ResetTuileUp(tuile2,hPosTuile2);
@@ -206,7 +214,7 @@
                 case 39:
                     vx=2.2;
                     break;
-                   }
+                }
 
         }
         
@@ -218,7 +226,7 @@
                 case 39:
                     vx=0;
                     break;
-                   }
+                }
         }
         
     
