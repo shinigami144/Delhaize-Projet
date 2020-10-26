@@ -52,6 +52,7 @@
     var idInterval
     var idNextTuile;
     var boolGameBegin=false;
+    var ConstImageHeight;
 
     function completeLoading(event){
         initGame();
@@ -69,13 +70,17 @@
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
+        ConstImageHeight = Q.getResult("T1").height;
         // init tuile2
         tuile2 = new createjs.Bitmap(Q.getResult("T2"));
         hPosTuile2 = -Q.getResult("T2").height;
+        console.log(ConstImageHeight)
+        idNextTuile=3;
 
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
+        
 
     }
 
@@ -102,7 +107,7 @@
         if(positionH> canvas.height){
             // note : 1 mettre la taille au min et 2 changer la tuile hors de l'ecran
             console.log("ETAT",positionH,canvas.height,tuile.image.height);
-            positionH = (-1023); // test taille min entre les deux
+            positionH = -ConstImageHeight; // test taille min entre les deux
             tuile.image = Q.getResult("T"+idNextTuile);
             idNextTuile++;
             //boolGameBegin=false;
