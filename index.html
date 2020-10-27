@@ -59,6 +59,8 @@
     var obstacleblue;
     var obstaclevert;
     var vx = 0;
+    var barre;
+    var avancement;
     vy = 0.22;
     // var debug
     var debug = 1;
@@ -74,14 +76,15 @@
         document.addEventListener("keyup", up);
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
-        var cont = canvas.getContext("2d");
+        barre = new createjs.Shape();
         scene = new createjs.Stage("monSuperCanvas");
         terrain = new createjs.Container();
         fond = new createjs.Shape();
+        avancement = new createjs.Shape();
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
-        ConstImageHeight = window.innerHeight-1;
+        ConstImageHeight = window.innerHeight;
         //Q.getResult("T1").height;
         // init tuile2
         tuile2 = new createjs.Bitmap(Q.getResult("T2"));
@@ -109,6 +112,16 @@
         boule.graphics.endFill();
         boule.x=canvas.width/2;
         boule.y=canvas.height-50;
+        // init barre
+        barre.graphics.beginFill("rgb(255,0,0)");
+        barre.graphics.drawRect(0,0,50,canvas.height);
+        barre.graphics.endFill();
+        avancement.graphics.beginFill("rgb(0,0,0)");
+        avancement.graphics.drawRect(0,0,50,50);
+        avancement.graphics.endFill();
+        avancement.y = canvas.height-50;
+
+
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
@@ -116,6 +129,8 @@
         terrain.addChild(obstacleblue);
         terrain.addChild(obstaclevert);
         scene.addChild(terrain);
+        scene.addChild(barre);
+        scene.addChild(avancement);
         idInterval = window.setInterval(update,1);
     }
 
@@ -158,7 +173,7 @@
                 // boule
                 boule.x+=vx;
                 //Terrain
-                terrain.y+=vy;
+                terrain.y+=vy
                 obstacleblue.y+=vy;
                 if(terrain.y>canvas.height*3){
                     terrain.y=0;
@@ -170,6 +185,9 @@
                 //console.log(hPosTuile2,hPosTuile1);
                 hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
                 hPosTuile2 = ResetTuileUp(tuile2,hPosTuile2);
+
+                // barre 
+                avancement.y-=(vy/8);
             // augmentation de la vitesse
             if(vy<.88){
                 vy+=0.001;
