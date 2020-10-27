@@ -14,7 +14,7 @@
 <script src="./easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script>
- 
+    
     function openFullscreen(callback) {
         if (canvas.requestFullscreen)
         {
@@ -38,12 +38,14 @@
             callback();
         }
     }
-
+    
     // loading all assets
     var Q = new createjs.LoadQueue();
     Q.on("complete",completeLoading,this);
+    queue.installPlugin(createjs.Sound);
     // Image
     Q.loadManifest([
+
         {id:"T1",src:"./Asset/Graphique/Tuile/Tuile1/tuileTest1.png"},
         {id:"T2",src:"./Asset/Graphique/Tuile/Tuile2/tuileTest2.png"},
         {id:"T3",src:"./Asset/Graphique/Tuile/Tuile3/tuileTest3.png"},
@@ -55,10 +57,14 @@
         {id:"T9",src:"./Asset/Graphique/Tuile/tuileTest9.png"},
         {id:"T10",src:"./Asset/Graphique/Tuile/tuileTest10.png"},
         {id:"T11",src:"./Asset/Graphique/Tuile/tuileTest11.png"},
-        {id:"BouleDeNeige",src:"./Asset/"}
+        {id:"BouleDeNeige",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
+
+
+
+
+        {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
         
     ]);
-    // Sound
     
 
     // variable
