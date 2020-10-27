@@ -22,17 +22,17 @@
     // Image
     Q.loadManifest([
 
-        {id:"T1",src:"./Asset/Graphique/Tuile/Tuile1/tuileTest1.png"},
-        {id:"T2",src:"./Asset/Graphique/Tuile/Tuile2/tuileTest2.png"},
-        {id:"T3",src:"./Asset/Graphique/Tuile/Tuile3/tuileTest3.png"},
-        {id:"T4",src:"./Asset/Graphique/Tuile/tuileTest4.png"},
-        {id:"T5",src:"./Asset/Graphique/Tuile/tuileTest5.png"},
-        {id:"T6",src:"./Asset/Graphique/Tuile/tuileTest6.png"},
-        {id:"T7",src:"./Asset/Graphique/Tuile/tuileTest7.png"},
-        {id:"T8",src:"./Asset/Graphique/Tuile/tuileTest8.png"},
-        {id:"T9",src:"./Asset/Graphique/Tuile/tuileTest9.png"},
-        {id:"T10",src:"./Asset/Graphique/Tuile/tuileTest10.png"},
-        {id:"T11",src:"./Asset/Graphique/Tuile/tuileTest11.png"},
+        {id:"T1",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T2",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T3",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T4",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T5",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T6",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T7",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T8",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T9",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T10",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T11",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
         {id:"BouleDeNeige",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
 
 
@@ -60,6 +60,8 @@
     var obstaclevert;
     var vx = 0;
     vy = 0.22;
+    // var debug
+    var debug = 1;
 
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
@@ -72,16 +74,18 @@
         document.addEventListener("keyup", up);
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
+        var cont = canvas.getContext("2d");
         scene = new createjs.Stage("monSuperCanvas");
         terrain = new createjs.Container();
         fond = new createjs.Shape();
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
-        ConstImageHeight = Q.getResult("T1").height;
+        ConstImageHeight = window.innerHeight-1;
+        //Q.getResult("T1").height;
         // init tuile2
         tuile2 = new createjs.Bitmap(Q.getResult("T2"));
-        hPosTuile2 = -Q.getResult("T2").height;
+        hPosTuile2 = -window.innerHeight;
         console.log(ConstImageHeight)
         idNextTuile=3;
         // init obstacle vert
@@ -104,7 +108,7 @@
         boule.y=0;
         boule.graphics.endFill();
         boule.x=canvas.width/2;
-        boule.y=innerHeight-50;
+        boule.y=canvas.height-50;
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
@@ -116,11 +120,11 @@
     }
 
     function update(){
-        console.log(obstacleblue.y);
+        //console.log(obstacleblue.y);
         if(boolGameBegin == true){
             // collision bord
-            if(boule.x<canvas.width/4+50){
-                boule.x=canvas.width/4+50;
+            if(boule.x<canvas.width/4){
+                boule.x=canvas.width/4;
                 if(vy>0.10)
                 {
                     vy = vy/2
@@ -129,8 +133,8 @@
                      vy = 0.05
                 }
             }
-            if(boule.x>(canvas.width/4)*3-50){
-                boule.x=(canvas.width/4)*3-50;
+            if(boule.x>(canvas.width/4)*3){
+                boule.x=(canvas.width/4)*3;
                 if(vy>0.10){
                     vy = vy/2
                 }
@@ -172,8 +176,13 @@
             }
             
         }
-        tuile2.setTransform(0,hPosTuile2);
-        tuile1.setTransform(0,hPosTuile1);
+
+        tuile2.setTransform(0,hPosTuile2,canvas.width/tuile2.image.width,canvas.height/tuile2.image.height);
+        tuile1.setTransform(0,hPosTuile1,canvas.width/tuile1.image.width,canvas.height/tuile1.image.height);
+        if(debug == 1){
+            console.log(tuile1,tuile2);
+            debug = 0;
+        }
         scene.update();
         if(idNextTuile > 10){
             boolGameBegin = false;
