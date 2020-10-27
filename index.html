@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style></style>
+</head>
+<body>
+    
+    <canvas id="monSuperCanvas"></canvas>
+</body>
+<script src="./easeljs.min.js"></script>
+<script src="./preloadjs.min.js"></script>
+<script>
+    
+    // loading all assets
+    var Q = new createjs.LoadQueue();
+    Q.on("complete",completeLoading,this);
+    Q.installPlugin(createjs.Sound);
+    // Image
+    Q.loadManifest([
+
+        {id:"T1",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T2",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T3",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T4",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T5",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T6",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T7",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T8",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T9",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T10",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"T11",src:"./Asset/Graphique/Tuile/Tuile0/tuile_0.png"},
+        {id:"BouleDeNeige",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
+
+
+
+
+        {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
+        
+    ]);
+    
+
+    // variable
+    var canvas
+    var scene;
+    var terrain;
+    var hPosTuile1;
+    var hPosTuile2;
+    var tuile1;
+    var tuile2;
+    var idInterval
+    var idNextTuile;
+    var boolGameBegin=true;
+    var ConstImageHeight;
+    var boule;
+    var obstacleblue;
+    var obstaclevert;
+    var vx = 0;
+    var barre;
+    var avancement;
+    vy = 0.22;
+    // var debug
+    var debug = 1;
+
+    function completeLoading(event){
+        canvas = document.getElementById("monSuperCanvas");
+        initGame();
+    }
+
+    function initGame(){
+        // init canevas
+        document.addEventListener("keydown", down);
+        document.addEventListener("keyup", up);
+        canvas.width= window.innerWidth;
+        canvas.height= window.innerHeight;
+        barre = new createjs.Shape();
+        scene = new createjs.Stage("monSuperCanvas");
+        terrain = new createjs.Container();
+        fond = new createjs.Shape();
+        avancement = new createjs.Shape();
+        // init tuile1
+        tuile1 = new createjs.Bitmap(Q.getResult("T1"));
+        hPosTuile1 = 0;
+        ConstImageHeight = window.innerHeight;
+        //Q.getResult("T1").height;
+        // init tuile2
+        tuile2 = new createjs.Bitmap(Q.getResult("T2"));
+        hPosTuile2 = -window.innerHeight;
+        console.log(ConstImageHeight)
+        idNextTuile=3;
+        // init obstacle vert
+        obstaclevert = new createjs.Shape();
+        obstaclevert.graphics.beginFill("rgb(0,188,0)");
+        obstaclevert.graphics.drawRect(0,0,100,10);
+        obstaclevert.graphics.endFill();
+        // init obstacle bleu
+        obstacleblue = new createjs.Shape();
+        obstacleblue.graphics.beginFill("rgb(0,188,220)");
+        obstacleblue.graphics.drawRect(0,0,100,10);
+        obstacleblue.graphics.endFill();
+        obstacleblue.x = canvas.width/2;
+        obstacleblue.y = 0;
+        // init boule
+        boule = new createjs.Shape();
+        boule.graphics.beginFill("rgb(255,255,255)");
+        boule.graphics.drawCircle(0,0,50);
+        boule.x=25;
+        boule.y=0;
+        boule.graphics.endFill();
+        boule.x=canvas.width/2;
+        boule.y=canvas.height-50;
+        // init barre
+        barre.graphics.beginFill("rgb(255,0,0)");
+        barre.graphics.drawRect(0,0,50,canvas.height);
+        barre.graphics.endFill();
+        avancement.graphics.beginFill("rgb(0,0,0)");
+        avancement.graphics.drawRect(0,0,50,50);
+        avancement.graphics.endFill();
+        avancement.y = canvas.height-50;
+
+
+        // adding in scene
+        scene.addChild(tuile1);
+        scene.addChild(tuile2);
+        scene.addChild(boule);
+        terrain.addChild(obstacleblue);
+        terrain.addChild(obstaclevert);
+        scene.addChild(terrain);
+        scene.addChild(barre);
+        scene.addChild(avancement);
+        idInterval = window.setInterval(update,1);
+    }
+
+    function update(){
+        //console.log(obstacleblue.y);
+        if(boolGameBegin == true){
+            // collision bord
+            if(boule.x<canvas.width/4){
+                boule.x=canvas.width/4;
+                if(vy>0.10)
+                {
+                    vy = vy/2
+                }
+                else{
+                     vy = 0.05
+                }
+            }
+            if(boule.x>(canvas.width/4)*3){
+                boule.x=(canvas.width/4)*3;
+                if(vy>0.10){
+                    vy = vy/2
+                }
+                else{
+                    vy = 0.05
+                }
+            }
+            // collision obstcle bleu
+            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+                if(vy>0.10){
+                    vy = vy/2
+                }
+                else
+                {
+                    vy = 0.05
+                }
+                //boolGameBegin = false;
+            }
+            // collision obstacle vert
+            // update position objet
+                // boule
+                boule.x+=vx;
+                //Terrain
+                terrain.y+=vy
+                obstacleblue.y+=vy;
+                if(terrain.y>canvas.height*3){
+                    terrain.y=0;
+                    obstacleblue.y = canvas.width/2;
+                }
+                // tuile 
+                hPosTuile1+=vy;
+                hPosTuile2+=vy;
+                //console.log(hPosTuile2,hPosTuile1);
+                hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
+                hPosTuile2 = ResetTuileUp(tuile2,hPosTuile2);
+
+                // barre 
+                avancement.y-=(vy/8);
+            // augmentation de la vitesse
+            if(vy<.88){
+                vy+=0.001;
+            }
+            
+        }
+
+        tuile2.setTransform(0,hPosTuile2,canvas.width/tuile2.image.width,canvas.height/tuile2.image.height);
+        tuile1.setTransform(0,hPosTuile1,canvas.width/tuile1.image.width,canvas.height/tuile1.image.height);
+        if(debug == 1){
+            console.log(tuile1,tuile2);
+            debug = 0;
+        }
+        scene.update();
+        if(idNextTuile > 10){
+            boolGameBegin = false;
+        }
+    }
+
+    function ResetTuileUp(tuile,positionH){
+        if(positionH> canvas.height){
+            // note : 1 mettre la taille au min et 2 changer la tuile hors de l'ecran
+            //console.log("ETAT",positionH,canvas.height,tuile.image.height);
+            positionH = -ConstImageHeight; // test taille min entre les deux
+            tuile.image = Q.getResult("T"+idNextTuile);
+            idNextTuile++;
+            //boolGameBegin=false;
+        }
+        return positionH;
+    }
+
+    // TODO 
+    function ResizeAuto(){
+
+    }
+
+    // Movement Function 
+    function down(e){
+            switch(e.keyCode){
+                case 37:
+                    vx=-2.2;
+                    break;
+                case 39:
+                    vx=2.2;
+                    break;
+                }
+
+        }
+        
+    function up(e){
+            switch(e.keyCode){
+                case 37:
+                    vx=0;
+                    break;
+                case 39:
+                    vx=0;
+                    break;
+                }
+        }
+        
+    
+</script>
+</html>
