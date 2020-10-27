@@ -1,0 +1,9 @@
+<!-- Display the countdown timer in an element -->
+<p id="demo"></p>
+<script>
+var timer = document.getElementById('demo');
+var seconds = 0;
+setInterval(function() {
+timer.innerHTML = seconds++;
+}, 1000);
+</script>
