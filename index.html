@@ -11,7 +11,7 @@
     <button onclick="openFullscreen(initGame);">Open Fullscreen</button>
     <canvas id="monSuperCanvas"></canvas>
 </body>
-<script src="./lib/Easeljs-1.0.0/lib/easeljs.min.js"></script>
+<script src="./easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script>
  
@@ -44,17 +44,18 @@
     Q.on("complete",completeLoading,this);
     // Image
     Q.loadManifest([
-        {id:"T1",src:"./Asset/tuile/tuileTest1.png"},
-        {id:"T2",src:"./Asset/tuile/tuileTest2.png"},
-        {id:"T3",src:"./Asset/tuile/tuileTest3.png"},
-        {id:"T4",src:"./Asset/tuile/tuileTest4.png"},
-        {id:"T5",src:"./Asset/tuile/tuileTest5.png"},
-        {id:"T6",src:"./Asset/tuile/tuileTest6.png"},
-        {id:"T7",src:"./Asset/tuile/tuileTest7.png"},
-        {id:"T8",src:"./Asset/tuile/tuileTest8.png"},
-        {id:"T9",src:"./Asset/tuile/tuileTest9.png"},
-        {id:"T10",src:"./Asset/tuile/tuileTest10.png"},
-        {id:"T11",src:"./Asset/tuile/tuileTest11.png"}
+        {id:"T1",src:"./Asset/Graphique/Tuile/Tuile1/tuileTest1.png"},
+        {id:"T2",src:"./Asset/Graphique/Tuile/Tuile2/tuileTest2.png"},
+        {id:"T3",src:"./Asset/Graphique/Tuile/Tuile3/tuileTest3.png"},
+        {id:"T4",src:"./Asset/Graphique/Tuile/tuileTest4.png"},
+        {id:"T5",src:"./Asset/Graphique/Tuile/tuileTest5.png"},
+        {id:"T6",src:"./Asset/Graphique/Tuile/tuileTest6.png"},
+        {id:"T7",src:"./Asset/Graphique/Tuile/tuileTest7.png"},
+        {id:"T8",src:"./Asset/Graphique/Tuile/tuileTest8.png"},
+        {id:"T9",src:"./Asset/Graphique/Tuile/tuileTest9.png"},
+        {id:"T10",src:"./Asset/Graphique/Tuile/tuileTest10.png"},
+        {id:"T11",src:"./Asset/Graphique/Tuile/tuileTest11.png"},
+        {id:"BouleDeNeige",src:"./Asset/"}
         
     ]);
     // Sound
@@ -90,6 +91,7 @@
         canvas.height= window.innerHeight;
         scene = new createjs.Stage("monSuperCanvas");
         terrain = new createjs.Container();
+        fond = new createjs.Shape();
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
@@ -112,7 +114,6 @@
         obstacleblue.x = canvas.width/2;
         obstacleblue.y = 0;
         // init boule
-         
         boule = new createjs.Shape();
         boule.graphics.beginFill("rgb(255,255,255)");
         boule.graphics.drawCircle(0,0,50);
@@ -132,56 +133,64 @@
     }
 
     function update(){
-        
-        boule.x+=vx;
-        
-        if(boule.x<canvas.width/4+50){
-            boule.x=canvas.width/4+50;
-            if(vy>0.10)
-            {
-                vy = vy/2
-            }
-            else{
-                 vy = 0.05
-            }
-        }
-        if(boule.x>(canvas.width/4)*3-50){
-            boule.x=(canvas.width/4)*3-50;
-            if(vy>0.10){
-                vy = vy/2
-            }
-            else{
-                vy = 0.05
-            }
-        }
-        if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
-            if(vy>0.10){
-                vy = vy/2
-            }
-            else
-            {
-                vy = 0.05
-            }
-        }
-        if(vy<.88){
-            vy+=0.001;
-        }
-        terrain.y+=vy;
-        obstacleblue.y+=vy;
-        if(terrain.y>canvas.height*3){
-            terrain.y=0;
-            obstacleblue.y = canvas.width/2;
-        }
+        console.log(obstacleblue.y);
         if(boolGameBegin == true){
-            hPosTuile1+=vy;
-            hPosTuile2+=vy;
-            //console.log(hPosTuile2,hPosTuile1);
-            hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
-            hPosTuile2 = ResetTuileUp(tuile2,hPosTuile2);
+            // collision bord
+            if(boule.x<canvas.width/4+50){
+                boule.x=canvas.width/4+50;
+                if(vy>0.10)
+                {
+                    vy = vy/2
+                }
+                else{
+                     vy = 0.05
+                }
+            }
+            if(boule.x>(canvas.width/4)*3-50){
+                boule.x=(canvas.width/4)*3-50;
+                if(vy>0.10){
+                    vy = vy/2
+                }
+                else{
+                    vy = 0.05
+                }
+            }
+            // collision obstcle bleu
+            if(((boule.x>obstacleblue.x && boule.x< obstacleblue.x+100)||(boule.x+100>obstacleblue.x && boule.x+100< obstacleblue.x+100)) && boule.y-50>obstacleblue.y && boule.y-50<obstacleblue.y+10){
+                if(vy>0.10){
+                    vy = vy/2
+                }
+                else
+                {
+                    vy = 0.05
+                }
+                //boolGameBegin = false;
+            }
+            // collision obstacle vert
+            // update position objet
+                // boule
+                boule.x+=vx;
+                //Terrain
+                terrain.y+=vy;
+                obstacleblue.y+=vy;
+                if(terrain.y>canvas.height*3){
+                    terrain.y=0;
+                    obstacleblue.y = canvas.width/2;
+                }
+                // tuile 
+                hPosTuile1+=vy;
+                hPosTuile2+=vy;
+                //console.log(hPosTuile2,hPosTuile1);
+                hPosTuile1 = ResetTuileUp(tuile1,hPosTuile1);
+                hPosTuile2 = ResetTuileUp(tuile2,hPosTuile2);
+            // augmentation de la vitesse
+            if(vy<.88){
+                vy+=0.001;
+            }
+            
         }
         tuile2.setTransform(0,hPosTuile2);
         tuile1.setTransform(0,hPosTuile1);
-        
         scene.update();
         if(idNextTuile > 10){
             boolGameBegin = false;
@@ -191,7 +200,7 @@
     function ResetTuileUp(tuile,positionH){
         if(positionH> canvas.height){
             // note : 1 mettre la taille au min et 2 changer la tuile hors de l'ecran
-            console.log("ETAT",positionH,canvas.height,tuile.image.height);
+            //console.log("ETAT",positionH,canvas.height,tuile.image.height);
             positionH = -ConstImageHeight; // test taille min entre les deux
             tuile.image = Q.getResult("T"+idNextTuile);
             idNextTuile++;
