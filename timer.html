@@ -5,6 +5,7 @@
 var seconds = 0;
 var min = 0;
 setInterval(function() {
+timer.fillRect();
 timer.fillText( min + ":" +seconds++,10,50);
     if (seconds >= 60){
         min++;
