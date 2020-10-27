@@ -1,9 +1,21 @@
 <!-- Display the countdown timer in an element -->
-<p id="demo"></p>
+<canvas id="demo"></canvas>
+
 <script>
-var timer = document.getElementById('demo');
 var seconds = 0;
+var min = 0;
 setInterval(function() {
-timer.innerHTML = seconds++;
-}, 1000);
+timer.fillText( min + ":" +seconds++,10,50);
+    if (seconds >= 60){
+        min++;
+        seconds=0;
+    }
+}, 1000);    
+    
+    
+var timer = document.getElementById('demo').getContext("2d");
+timer.width=window.innerWidth;
+timer.height=window.innerHeight;
+timer.font = '48px serif';
+    
 </script>
