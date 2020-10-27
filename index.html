@@ -8,36 +8,12 @@
     <style></style>
 </head>
 <body>
-    <button onclick="openFullscreen(initGame);">Open Fullscreen</button>
+    
     <canvas id="monSuperCanvas"></canvas>
 </body>
 <script src="./easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script>
-    
-    function openFullscreen(callback) {
-        if (canvas.requestFullscreen)
-        {
-            canvas.requestFullscreen();
-            callback();
-        } 
-        else if (canvas.mozRequestFullScreen) 
-        { /* Firefox */
-            canvas.mozRequestFullScreen();
-            callback();
-          
-        } 
-        else if (canvas.webkitRequestFullscreen) 
-        { /* Chrome, Safari and Opera */
-            canvas.webkitRequestFullscreen();
-            callback();
-        } 
-        else if (canvas.msRequestFullscreen) 
-        { /* IE/Edge */
-            canvas.msRequestFullscreen();
-            callback();
-        }
-    }
     
     // loading all assets
     var Q = new createjs.LoadQueue();
@@ -87,6 +63,7 @@
 
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
+        initGame();
     }
 
     function initGame(){
