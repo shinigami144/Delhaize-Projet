@@ -93,16 +93,16 @@
         console.log(obstacle);
         function update(){
             boule.x+=vx;
-            if(boule.x<canvas.width/4+(canvas.width/400)*8.25){
-                boule.x=canvas.width/4+(canvas.width/400)*8.25;
+            if(boule.x<canvas.width/4+(canvas.width/400)*8.25*boule.scaleX){
+                boule.x=canvas.width/4+(canvas.width/400)*8.25*boule.scaleX;
                 if(vy>0.10){
                     vy = vy/2
                 }else{
                     vy = 0.05
                 }
             }
-            if(boule.x>(canvas.width/4)*3-(canvas.width/400)*8.25){
-                boule.x=(canvas.width/4)*3-(canvas.width/400)*8.25;
+            if(boule.x>(canvas.width/4)*3-(canvas.width/400)*8.25*boule.scaleX){
+                boule.x=(canvas.width/4)*3-(canvas.width/400)*8.25*boule.scaleX;
                 if(vy>0.10){
                     vy = vy/2
                 }else{
@@ -110,7 +110,8 @@
                 }
             }
             for(var cpt=obstacle.length;cpt>0;cpt--){
-                if(boule.x>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>120+(200*(obstacle.length-cpt)) && terrain.y<142+(200*(obstacle.length-cpt))){
+                if(boule.x+(canvas.width/400)*8.25*boule.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x-(canvas.width/400)*8.25*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>boule.y-boule.height-600+(200*(obstacle.length-cpt)-10) && terrain.y<boule.y+boule.height-600+(200*(obstacle.length-cpt))){
+                    console.log(terrain.y)
                     if(vy>0.10){
                         vy = vy/2
                     }else{
@@ -122,8 +123,7 @@
                 vy+=0.001;
                 boule.scaleX+=vy/2000;
                 boule.scaleY+=vy/2000;
-                boule.height=boule.y+(canvas.width/400)*8.25*boule.scaleY;
-                console.log(boule.height);
+                boule.height=(canvas.width/400)*8.25*boule.scaleY;
             }
             terrain.y+=vy;
             obstacleblue.y+=vy;
