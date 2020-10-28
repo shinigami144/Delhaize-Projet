@@ -164,6 +164,7 @@
         var randomX = Math.floor(Math.random()*3);
         var randomY = Math.floor(Math.random()*3);
         obstacleblue.setTransform((canvas.width/4)*randomX,(canvas.height/4)*randomY);
+        obstacleblue.setBounds(0,0,Q.getResult("ObstacleBleu").width,Q.getResult("ObstacleBleu").height)
         scene.addChild(obstacleblue);
 
         /*
