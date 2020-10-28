@@ -154,13 +154,19 @@
         console.log(ConstImageHeight);
         idNextTuile=3;
         // init obstacle vert
+        /*
         obstaclevert = new createjs.Shape();
         obstaclevert.graphics.beginFill("rgb(0,188,0)");
         obstaclevert.graphics.drawRect(0,0,100,10);
-        obstaclevert.graphics.endFill();
+        obstaclevert.graphics.endFill();*/
         // init obstacle bleu
-        obstacleblue = new createjs.Shape();
-        var i =0;
+        obstacleblue = new createjs.Bitmap(Q.getResult("ObstacleBleu"));
+        var randomX = Math.floor(Math.random()*3);
+        var randomY = Math.floor(Math.random()*3);
+        obstacleblue.setTransform((canvas.width/4)*randomX,(canvas.height/4)*randomY);
+        scene.addChild(obstacleblue);
+
+        /*
         obstacleblue.x=canvas.width/4;
         for(var cpt=-8;cpt<3;cpt++){
             obstacleblue.graphics.beginFill("rgb(0,188,220)");
@@ -168,7 +174,7 @@
             obstacleblue.graphics.drawRect(obstacle[i]*canvas.width/6,cpt*200,canvas.width/6,10); 
             i++;
         }
-        obstacleblue.graphics.endFill();;
+        obstacleblue.graphics.endFill();;*/
         // init boule
         // initialisation du conteneur de la boule
         boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
