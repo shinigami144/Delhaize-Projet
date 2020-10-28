@@ -51,10 +51,6 @@
         {id:"BouleDeNeigeF4",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_4.png"},
         {id:"ObstacleBleu",src:"./Asset/Graphique/Obstacle/obstacle_glace.png"},
         {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
-
-
-
-
         {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
         
     ]);
@@ -81,9 +77,20 @@
     var avancement;
     vy = 0.22;
     var appelonce = true;
-    var idFrame = 1;
     // var debug
     var debug = 1;
+    //variable lier au décompte et au lancement du timer
+    var countdown=3;
+    var seconds = 0;
+    var min = 0;
+    var time=0;
+    var score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
+    var decompte = new createjs.Text(countdown, "100px Arial", "#000000");
+    function completeLoading(event){
+        canvas = document.getElementById("monSuperCanvas");
+        initGame();
+         setInterval(PrepaDepart,1000);
+    }
 
     function Animation(){
         // Animation Boule de Neige
@@ -95,11 +102,6 @@
             idFrame++;
         }
     }
-    function completeLoading(event){
-        canvas = document.getElementById("monSuperCanvas");
-        initGame();
-    }
-
     function initGame(){
         // init canevas
         document.addEventListener("keydown", down);
@@ -112,6 +114,16 @@
         terrain = new createjs.Container();
         fond = new createjs.Shape();
         avancement = new createjs.Shape();
+        //affichage du décompte et du timer
+        
+        score.x = canvas.width-250;
+        score.y=100;
+        score.textBaseline = "alphabetic";
+        
+        decompte.x = canvas.width/2;
+        decompte.y=canvas.height/2;
+        decompte.textBaseline = "alphabetic";
+       
         // init tuile1
         tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
@@ -123,7 +135,6 @@
         tuile2 = new createjs.Bitmap(Q.getResult("T2"));
         tuile2.scaleX = canvas.width/Q.getResult("T2").width;
         tuile2.scaleY = canvas.height/Q.getResult("T2").height;
-
 
 
         hPosTuile2 = -window.innerHeight;
@@ -166,14 +177,16 @@
         scene.addChild(terrain);
         scene.addChild(barre);
         scene.addChild(avancement);
+        scene.addChild(score);
+        scene.addChild(decompte);
         idInterval = window.setInterval(update,1);
         createjs.Ticker.on("tick",Animation)
         createjs.Ticker.interval = 25;
         createjs.Ticker.framerate = 20*(vy/0.88);
-    }
 
     function update(){
-        //console.log(obstacleblue.y);
+        //permet de rafraichir le temps
+        score.text=min +":"+seconds;
         createjs.Ticker.framerate = 20*(vy/0.88);
         console.log(createjs.Ticker.framerate);
         if(idNextTuile > 12){
@@ -201,20 +214,16 @@
                 }
             }
             // collision obstcle bleu
-            // brian est en cours
-            for(var cpt=obstacle.length;cpt>0;cpt--){
-                if(boule.x+(canvas.width/400)*8.25*boule.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x-(canvas.width/400)*8.25*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>boule.y-boule.height-600+(200*(obstacle.length-cpt)-10) && terrain.y<boule.y+boule.height-600+(200*(obstacle.length-cpt))){
-                    console.log(terrain.y)
-                    if(vy>0.10){
-                        vy = vy/2
-                    }else{
-                        vy = 0.05
-                    }
-                } 
+
+            for(var cpt=obstacle.lenght;cpt>0;cpt--){
+                // colision en X
+                // colision en Y
+                
             }
+        }
             // update position objet
                 // boule
-                boule.x+=vx;
+        boule.x+=vx;
                 //Terrain
                 terrain.y+=vy
                 obstacleblue.y+=vy;
@@ -245,6 +254,8 @@
         if(boolGameBegin == false){
 
             if(appelonce == true){
+
+                clearInterval(time);
                 alert("FINI");
                 appelonce = false;
             }
@@ -292,6 +303,42 @@
                     vx=0;
                     break;
                 }
+        }
+
+    
+    //lance le timer
+        function Depart()
+        {
+            console.log("GO");
+            time = setInterval(function() {
+            seconds++;
+            if (seconds >= 60){
+                
+                min++;
+                seconds=0;
+                //console.log(min+ " "+seconds);
+            }
+        }, 1000);
+        }
+        
+        //fait le décompte du temps et lance la fonction Depart
+        function PrepaDepart()
+        {
+            countdown--;
+            if(countdown<=0)
+            {
+                //Depart();
+                scene.removeChild(decompte);
+            }
+            if(countdown==0)
+            {
+                Depart();
+            }
+            if(countdown>0)
+            {
+                decompte.text=countdown;   
+            }
+            
         }
         
     
