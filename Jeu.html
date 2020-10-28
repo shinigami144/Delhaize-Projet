@@ -160,7 +160,7 @@ function initGame(){
                 }
             }
             for(var cpt=obstacle.length;cpt>0;cpt--){
-                if((neige.x+neige.getBounds().width/2)*neige.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
+                if((neige.x-(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x-(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 || neige.x+(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x+(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 )&& terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
                     if(vy>0.10){
                         vy = vy/2
                     }else{
@@ -173,8 +173,8 @@ function initGame(){
                 if(neige.scaleX<1){
                     neige.scaleX+=vy/2000;
                     neige.scaleY+=vy/2000;
-                    neige.height=neige.y+neige.getBounds().width*neige.scaleY;
-                    neige.height=(canvas.width/400)*8.25*neige.scaleY;
+                    neige.height=neige.y+neige.getBounds().height*neige.scaleY;
+                    neige.width=(neige.x+neige.getBounds().width)*neige.scaleX;
                 }
                 
 
