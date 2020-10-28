@@ -155,10 +155,11 @@
 
         boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
         idFrame=2;
-        neige.setTransform(0,0,.5,.5);
+        //neige.scaleX=.5;
+        //neige.scaleY=.5;
+        boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         boule.x= -boule.getBounds().width/2;
         boule.y = -boule.getBounds().height/2
-        boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         neige.x=canvas.width/2;
         neige.y=canvas.height - boule.getBounds().height;
@@ -217,24 +218,26 @@
                 }
             }
             // collision obstcle bleu
-            /*
-            for(var cpt=obstacle.length;cpt>0;cpt--){
-                if((neige.x-(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x-(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 || neige.x+(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x+(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 )&& terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
-                    if(vy>0.10){
-                        vy = vy/2
-                    }else{
-                        vy = 0.05
+            for(var cpt=0;cpt<obstacleL.length;cpt++){
+                if(neige.x-neige.getBounds().width/2>obstacleL[cpt].x && neige.x-neige.getBounds().width/2<obstacleL[cpt].x+obstacleL[cpt].getBounds().width ||((neige.x+neige.getBounds().width/2)>obstacleL[cpt].x && (neige.x+neige.getBounds().width/2)<obstacleL[cpt].x+obstacleL[cpt].getBounds().width )){
+                   if((terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height>neige.y-neige.getBounds().height/2 && terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height<neige.y+neige.getBounds().height/2)||(terrain.y+obstacleL[cpt].y>neige.y-neige.getBounds().height/2 && terrain.y+obstacleL[cpt].y<neige.y+neige.getBounds().height/2)){
+                        if(vy>0.10){
+                            vy = vy/2
+                        }else{
+                            vy = 0.05
+                        }
                     }
-                } 
-            }*/
+                }
+            }
             if(vy<.88){
                 vy+=0.001;
-                if(neige.scaleX<1){
+                /*if(neige.scaleX<1){
+                    console.log("petit");
                     neige.scaleX+=vy/2000;
                     neige.scaleY+=vy/2000;
                     neige.height=neige.y+neige.getBounds().width*neige.scaleY;
                     neige.height=(canvas.width/400)*8.25*neige.scaleY;
-                }
+                }*/
             }
             //Terrain
             terrain.y+=vy
@@ -262,7 +265,7 @@
         scene.update();
         if(boolGameBegin == false){
             if(appelonce == true){
-                alert(time);
+                alert("Finis en "+time);
                 clearInterval(time);
                 appelonce = false;
             }
@@ -362,11 +365,12 @@
                     posY = i*-canvas.height + Math.floor(Math.random()*canvas.height);
                     posX = (canvas.width/4)+10 + Math.floor(Math.random()*((canvas.width/2)-10));
                     obstcleBleu.setTransform(posX-Q.getResult("ObstacleBleu").width/2,posY-Q.getResult("ObstacleBleu").height/2);
-                    obstcleBleu.setBounds(0,0,Q.getResult("ObstacleBleu"),Q.getResult("ObstacleBleu"));
+                    obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width,Q.getResult("ObstacleBleu").height);
                     obstacleL.push(obstcleBleu);
                     terrain.addChild(obstcleBleu);
                 }
             }
+            console.log(obstacleL.length);
         }
         function ReplaceObstacleBleu(){
 
