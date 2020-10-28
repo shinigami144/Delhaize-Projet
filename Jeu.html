@@ -24,6 +24,23 @@
         var start = 0;
         var obstacle = [];
         var i = 0;
+        
+        //variable lier au décompte et au lancement du timer
+        var countdown=3;
+        var seconds = 0;
+        var min = 0;
+        var time=0;
+        //affichage du décompte et du timer
+        var score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
+        score.x = canvas.width-250;
+        score.y=100;
+        score.textBaseline = "alphabetic";
+        var decompte = new createjs.Text(countdown, "100px Arial", "#000000");
+        decompte.x = canvas.width/2;
+        decompte.y=canvas.height/2;
+        decompte.textBaseline = "alphabetic";
+        
+        
 
         back.graphics.beginFill("rgb(0,188,0)");
         back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
@@ -50,6 +67,8 @@
         scene.addChild(terrain);  
         scene.addChild(obstacleblue);
         scene.addChild(barre);
+        scene.addChild(score);
+        scene.addChild(decompte);
         avancement.graphics.beginFill("rgb(0,0,0)");
         avancement.graphics.drawRect(0,0,50,50);
         avancement.graphics.endFill();
@@ -68,6 +87,7 @@
         var id = window.setInterval(update,1);
         vy=0.22;
         function down(e){
+            console.log(e.keyCode);
             switch(e.keyCode){
                 case 37:
                     vx=-2.2;
@@ -75,8 +95,17 @@
                 case 39:
                     vx=2.2;
                     break;
-                }
+                case 65:
+                    //permet d'arreter le timer
+                    clearInterval(time);
+                    break;
+                case 90:
+                    //permet de lancer le comptarebour
+                    setInterval(PrepaDepart,1000);
+                    break;
 
+                }
+                
         }
 
         function up(e){
@@ -89,9 +118,45 @@
                     break;
                 }
             }
+        //lance le timer
+        function Depart()
+        {
+            console.log("GO");
+            time = setInterval(function() {
+            seconds++;
+            if (seconds >= 60){
+                
+                min++;
+                seconds=0;
+                //console.log(min+ " "+seconds);
+            }
+        }, 1000);
+        }
+        
+        //fait le décompte du temps et lance la fonction Depart
+        function PrepaDepart()
+        {
+            countdown--;
+            if(countdown<=0)
+            {
+                //Depart();
+                scene.removeChild(decompte);
+            }
+            if(countdown==0)
+            {
+                Depart();
+            }
+            if(countdown>0)
+            {
+                decompte.text=countdown;   
+            }
+            
+        }
 
-        console.log(obstacle);
+        //console.log(obstacle);
         function update(){
+            //permet de rafraichir le temps
+            score.text=min +":"+seconds;
             boule.x+=vx;
             if(boule.x<canvas.width/4+(canvas.width/400)*8.25*boule.scaleX){
                 boule.x=canvas.width/4+(canvas.width/400)*8.25*boule.scaleX;
@@ -112,7 +177,7 @@
             }
             for(var cpt=obstacle.length;cpt>0;cpt--){
                 if(boule.x+(canvas.width/400)*8.25*boule.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x-(canvas.width/400)*8.25*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>boule.y-boule.height-600+(200*(obstacle.length-cpt)-10) && terrain.y<boule.y+boule.height-600+(200*(obstacle.length-cpt))){
-                    console.log(terrain.y)
+                    //console.log(terrain.y)
                     if(vy>0.10){
                         vy = vy/2
                     }else{
@@ -125,7 +190,7 @@
                 boule.scaleX+=vy/2000;
                 boule.scaleY+=vy/2000;
                 boule.height=boule.y+(canvas.width/400)*8.25*boule.scaleY;
-                console.log(boule.height);
+               // console.log(boule.height);
 
                 boule.height=(canvas.width/400)*8.25*boule.scaleY;
 
