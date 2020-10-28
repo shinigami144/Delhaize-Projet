@@ -24,7 +24,6 @@
         var start = 0;
         var obstacle = [];
         var i = 0;
-        
         //variable lier au décompte et au lancement du timer
         var countdown=3;
         var seconds = 0;
@@ -39,9 +38,6 @@
         decompte.x = canvas.width/2;
         decompte.y=canvas.height/2;
         decompte.textBaseline = "alphabetic";
-        
-        
-
         back.graphics.beginFill("rgb(0,188,0)");
         back.graphics.drawRect(0,-(canvas.height*3),canvas.width,canvas.height*4);
         back.graphics.beginFill("rgb(100,100,100)");
@@ -105,7 +101,6 @@
                     break;
 
                 }
-                
         }
 
         function up(e){
@@ -118,7 +113,7 @@
                     break;
                 }
             }
-        //lance le timer
+
         function Depart()
         {
             console.log("GO");
@@ -157,6 +152,9 @@
         function update(){
             //permet de rafraichir le temps
             score.text=min +":"+seconds;
+
+        console.log(obstacle);
+        function update(){
             boule.x+=vx;
             if(boule.x<canvas.width/4+(canvas.width/400)*8.25*boule.scaleX){
                 boule.x=canvas.width/4+(canvas.width/400)*8.25*boule.scaleX;
@@ -190,7 +188,7 @@
                 boule.scaleX+=vy/2000;
                 boule.scaleY+=vy/2000;
                 boule.height=boule.y+(canvas.width/400)*8.25*boule.scaleY;
-               // console.log(boule.height);
+                console.log(boule.height);
 
                 boule.height=(canvas.width/400)*8.25*boule.scaleY;
 

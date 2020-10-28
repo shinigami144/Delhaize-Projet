@@ -45,11 +45,12 @@
         {id:"T9",src:"./Asset/Graphique/Tuile/Tuile8/tuile_2_PNG8.png"},
         {id:"T10",src:"./Asset/Graphique/Tuile/Tuile9/tuile_3_PNG8.png"},
         {id:"T11",src:"./Asset/Graphique/Tuile/Tuile10/tuile_4_PNG8.png"},
-        {id:"BouleDeNeige",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
-
-
-
-
+        {id:"BouleDeNeigeF1",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_1.png"},
+        {id:"BouleDeNeigeF2",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_2.png"},
+        {id:"BouleDeNeigeF3",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_3.png"},
+        {id:"BouleDeNeigeF4",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_4.png"},
+        {id:"ObstacleBleu",src:"./Asset/Graphique/Obstacle/obstacle_glace.png"},
+        {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
         {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
         
     ]);
@@ -85,14 +86,22 @@
     var time=0;
     var score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
     var decompte = new createjs.Text(countdown, "100px Arial", "#000000");
-    
-
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
         initGame();
          setInterval(PrepaDepart,1000);
     }
 
+    function Animation(){
+        // Animation Boule de Neige
+        boule.image = Q.getResult("BouleDeNeigeF"+idFrame);
+        if(idFrame >3){
+            idFrame=1;
+        }
+        else{
+            idFrame++;
+        }
+    }
     function initGame(){
         // init canevas
         document.addEventListener("keydown", down);
@@ -105,7 +114,6 @@
         terrain = new createjs.Container();
         fond = new createjs.Shape();
         avancement = new createjs.Shape();
-        
         //affichage du décompte et du timer
         
         score.x = canvas.width-250;
@@ -115,27 +123,18 @@
         decompte.x = canvas.width/2;
         decompte.y=canvas.height/2;
         decompte.textBaseline = "alphabetic";
-        
+       
         // init tuile1
-        var image1 = Q.getResult("T1");
-        tuile1 = new createjs.Bitmap(image1);
+        tuile1 = new createjs.Bitmap(Q.getResult("T1"));
         hPosTuile1 = 0;
-        tuile1.scaleX = canvas.width/image1.width;
-        tuile1.scaleY = canvas.height/image1.height;
+        tuile1.scaleX = canvas.width/Q.getResult("T1").width;
+        tuile1.scaleY = canvas.height/Q.getResult("T1").height;
         ConstImageHeight = window.innerHeight;
 
         //Q.getResult("T1").height;
-        // init tuile2
-
-        // ????
-        var image = Q.getResult("T2");
-        tuile2 = new createjs.Bitmap(image);
-        console.log("image",image);
-        console.log("w",image.width);
-        console.log("h",image.height);
-        tuile2.scaleX = canvas.width/image.width;
-        tuile2.scaleY = canvas.height/image.height;
-
+        tuile2 = new createjs.Bitmap(Q.getResult("T2"));
+        tuile2.scaleX = canvas.width/Q.getResult("T2").width;
+        tuile2.scaleY = canvas.height/Q.getResult("T2").height;
 
 
         hPosTuile2 = -window.innerHeight;
@@ -158,14 +157,9 @@
         }
         obstacleblue.graphics.endFill();
         // init boule
-        boule = new createjs.Shape();
-        boule.graphics.beginFill("rgb(255,255,255)");
-        boule.graphics.drawCircle(0,0,50);
-        boule.x=25;
-        boule.y=0;
-        boule.graphics.endFill();
+        boule = new createjs.Bitmap(Q.getResult("BouleDeNeige"));
         boule.x=canvas.width/2;
-        boule.y=canvas.height-50;
+        boule.y=canvas.height-Q.getResult("BouleDeNeigeF1").height;
         // init barre
         barre.graphics.beginFill("rgb(255,0,0)");
         barre.graphics.drawRect(0,0,50,canvas.height);
@@ -185,14 +179,16 @@
         scene.addChild(avancement);
         scene.addChild(score);
         scene.addChild(decompte);
-        
         idInterval = window.setInterval(update,1);
-    }
+        createjs.Ticker.on("tick",Animation)
+        createjs.Ticker.interval = 25;
+        createjs.Ticker.framerate = 20*(vy/0.88);
 
     function update(){
-        //console.log(obstacleblue.y);
         //permet de rafraichir le temps
-            score.text=min +":"+seconds;
+        score.text=min +":"+seconds;
+        createjs.Ticker.framerate = 20*(vy/0.88);
+        console.log(createjs.Ticker.framerate);
         if(idNextTuile > 12){
             boolGameBegin = false;
         }
@@ -224,21 +220,10 @@
                 // colision en Y
                 
             }
-
-
-            /*
-            for(var cpt=obstacle.length;cpt>0;cpt--){
-                if(boule.x+(canvas.width/400)*8.25*boule.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && boule.x-(canvas.width/400)*8.25*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>boule.y-boule.height-600+(200*(obstacle.length-cpt)-10) && terrain.y<boule.y+boule.height-600+(200*(obstacle.length-cpt))){
-                    if(vy>0.10){
-                        vy = vy/2
-                    }else{
-                        vy = 0.05
-                    }
-                } 
-            }*/
+        }
             // update position objet
                 // boule
-                boule.x+=vx;
+        boule.x+=vx;
                 //Terrain
                 terrain.y+=vy
                 obstacleblue.y+=vy;
@@ -269,6 +254,7 @@
         if(boolGameBegin == false){
 
             if(appelonce == true){
+
                 clearInterval(time);
                 alert("FINI");
                 appelonce = false;
@@ -318,6 +304,7 @@
                     break;
                 }
         }
+
     
     //lance le timer
         function Depart()
