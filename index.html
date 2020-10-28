@@ -173,6 +173,7 @@
         // initialisation du conteneur de la boule
         boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
         idFrame=2;
+        neige.setTransform(0,0,.5,.5);
         boule.x= -boule.getBounds().width/2;
         boule.y = -boule.getBounds().height/2
         boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
@@ -200,6 +201,7 @@
         scene.addChild(score);
         scene.addChild(decompte);
         // les interval ( timer , animation et update)
+        scene.update();
         setInterval(PrepaDepart,1000);
         //
     }
@@ -358,8 +360,8 @@
         //fait le décompte du temps et lance la fonction Depart
         function PrepaDepart()
         {
-            scene.update();
             countdown--;
+            scene.update();
             if(countdown<=0)
             {
                 //Depart();
