@@ -72,6 +72,7 @@
     var ConstImageHeight;
     // objet
     var boule;
+    var neige;
     var obstacleblue;
     var obstaclevert;
     var obstacle;
@@ -122,6 +123,7 @@
         barre = new createjs.Shape();
         scene = new createjs.Stage("monSuperCanvas");
         terrain = new createjs.Container();
+        neige = new createjs.Container();
         fond = new createjs.Shape();
         avancement = new createjs.Shape();
         //affichage du décompte et du timer
@@ -166,12 +168,18 @@
             obstacleblue.graphics.drawRect(obstacle[i]*canvas.width/6,cpt*200,canvas.width/6,10); 
             i++;
         }
-        obstacleblue.graphics.endFill();
+        obstacleblue.graphics.endFill();;
         // init boule
+        // initialisation du conteneur de la boule
         boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
         idFrame=2;
-        boule.x=canvas.width/2;
-        boule.y=canvas.height-Q.getResult("BouleDeNeigeF1").height;
+        boule.x= -boule.getBounds().width/2;
+        boule.y = -boule.getBounds().height/2
+        boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
+        neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
+        neige.x=canvas.width/2;
+        neige.y=canvas.height - boule.getBounds().height;
+        neige.addChild(boule);
         // init barre
         barre.graphics.beginFill("rgb(255,0,0)");
         barre.graphics.drawRect(0,0,50,canvas.height);
@@ -183,7 +191,7 @@
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
-        scene.addChild(boule);
+        scene.addChild(neige);
         terrain.addChild(obstacleblue);
         terrain.addChild(obstaclevert);
         scene.addChild(terrain);
@@ -208,40 +216,50 @@
         }
         else{
             // collision bord
-            if(boule.x<canvas.width/4){
-                boule.x=canvas.width/4;
-                if(vy>0.10)
-                {
-                    vy = vy/2
-                }
-                else{
-                     vy = 0.05
-                }
-            }
-            if(boule.x>(canvas.width/4)*3){
-                boule.x=(canvas.width/4)*3;
+            neige.x+=vx;
+            if(neige.x<canvas.width/4+neige.getBounds().width/2*neige.scaleX){
+                neige.x=canvas.width/4+neige.getBounds().width/2*neige.scaleX;
                 if(vy>0.10){
                     vy = vy/2
+                }else{
+                    vy = 0.05
                 }
-                else{
+            }
+
+            if(neige.x>(canvas.width/4)*3-neige.getBounds().width/2*neige.scaleX){
+                neige.x=(canvas.width/4)*3-neige.getBounds().width/2*neige.scaleX;
+                if(vy>0.10){
+                    vy = vy/2
+                }else{
                     vy = 0.05
                 }
             }
             // collision obstcle bleu
-
-            for(var cpt=obstacle.lenght;cpt>0;cpt--){
-                // colision en X
-                // colision en Y
-                
+            for(var cpt=obstacle.length;cpt>0;cpt--){
+                if((neige.x+neige.getBounds().width/2)*neige.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
+                    if(vy>0.10){
+                        vy = vy/2
+                    }else{
+                        vy = 0.05
+                    }
+                } 
             }
-            // update position objet
-                // boule
-                boule.x+=vx;
+            if(vy<.88){
+                vy+=0.001;
+                if(neige.scaleX<1){
+                    neige.scaleX+=vy/2000;
+                    neige.scaleY+=vy/2000;
+                    neige.height=neige.y+neige.getBounds().width*neige.scaleY;
+                    neige.height=(canvas.width/400)*8.25*neige.scaleY;
+                }
+                
+
+            }
                 //Terrain
-                terrain.y+=vy
-                obstacleblue.y+=vy;
-                if(terrain.y>canvas.height*3){
-                    terrain.y=0;
+            terrain.y+=vy
+            obstacleblue.y+=vy;
+            if(terrain.y>canvas.height*3){
+                terrain.y=0;
                     obstacleblue.y = canvas.width/2;
                 }
                 // tuile 
