@@ -1,10 +1,10 @@
-<!-- Display the countdown timer in an element -->
 <canvas id="demo"></canvas>
+<button id='button'>Stop</button>
 
 <script>
 var seconds = 0;
 var min = 0;
-setInterval(function() {
+var interval = setInterval(function() {
 timer.fillStyle="white";
 timer.fillRect(0,0,160,800);
 timer.fillStyle="black";
@@ -15,10 +15,11 @@ timer.fillText( min + ":" +seconds++,10,50);
     }
 }, 1000);    
     
-    
 var timer = document.getElementById('demo').getContext("2d");
 timer.width=window.innerWidth;
 timer.height=window.innerHeight;
 timer.font = '48px serif';
-    
+
+var button = document.getElementById('button');
+    button.onclick = clearInterval(interval);
 </script>

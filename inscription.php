@@ -4,12 +4,20 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="style.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="Jeu Delhaize Frozen II" />
+        <meta property="og:description"   content="You played the Frozen II game from the delhaize website" />
+        <meta property="og:image"         content="https://www.journaldugeek.com/content/uploads/2017/04/reine-des-neiges-snowman.jpg" />
     </head>
     <body>
+        
+        
+        
         <?php
         session_start();
         ?>
-       <div>
+       <div class='inscription'>
             <h1 style="font-size:34px;text-decoration: underline;">Inscription</h1>
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA"  method="POST">
                 <p style="font-size:20px;">
@@ -19,6 +27,9 @@
                     <input type="submit"  value="envoyer"/></p>
             </form>
         </div>
+        
+        <!--bouton partager-->
+        
         <!--<script>
         var data = new FormData();
         data.append('app-token', 'XLGFHEKSPFJTHEPPPA');
