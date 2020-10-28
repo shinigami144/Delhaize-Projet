@@ -24,6 +24,8 @@
                 email : <input type="email" name="user-email" id='mail'/><br/>
                 ticket-id : <input type="txt" name="ticket-id" id='ticketid'/> <br/>
                 ticket-time : <input type="number" name="ticket-time" id='tickettime' /> <br/>
+                    
+                <a href='#ignorer' >Ignorer!</a>
                     <input type="submit"  value="envoyer"/></p>
             </form>
         </div>

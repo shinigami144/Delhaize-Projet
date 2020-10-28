@@ -15,9 +15,9 @@ echo $tickettime."<br/>";
 <script>
 var data = new FormData();
 data.append('app-token', 'XLGFHEKSPFJTHEPPPA');
-data.append('user-email', 'r@R.r');
-data.append('ticket-id', '2');
-data.append('ticket-time', '4');
+data.append('user-email','<?php echo $mail ?>' );
+data.append('ticket-id', '<?php echo $ticketid ?>');
+data.append('ticket-time', '<?php echo $tickettime ?>');
 var xhr = new XMLHttpRequest();
 xhr.open('POST',"http://rashid.fr/lab/ludus/2020-2021/M/GP/api-delhaize/delhaize_api_endpoint.php");
 xhr.onload = function () {
