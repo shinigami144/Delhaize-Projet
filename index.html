@@ -60,36 +60,46 @@
     var canvas
     var scene;
     var terrain;
+    // tuile
     var hPosTuile1;
     var hPosTuile2;
     var tuile1;
     var tuile2;
     var idInterval
     var idNextTuile;
+    // jeu
     var boolGameBegin=true;
     var ConstImageHeight;
+    // objet
     var boule;
     var obstacleblue;
     var obstaclevert;
     var obstacle;
     var vx = 0;
+    // barre
     var barre;
     var avancement;
     vy = 0.22;
     var appelonce = true;
-    // var debug
-    var debug = 1;
+    var idFrame;
+    
     //variable lier au décompte et au lancement du timer
     var countdown=3;
     var seconds = 0;
     var min = 0;
     var time=0;
-    var score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
-    var decompte = new createjs.Text(countdown, "100px Arial", "#000000");
+    var score; 
+    var decompte;
+
+
+
+
+    // var debug
+    var debug = 1;
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
         initGame();
-         setInterval(PrepaDepart,1000);
+       
     }
 
     function Animation(){
@@ -115,7 +125,8 @@
         fond = new createjs.Shape();
         avancement = new createjs.Shape();
         //affichage du décompte et du timer
-        
+        score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
+        decompte = new createjs.Text(countdown, "100px Arial", "#000000");
         score.x = canvas.width-250;
         score.y=100;
         score.textBaseline = "alphabetic";
@@ -157,7 +168,8 @@
         }
         obstacleblue.graphics.endFill();
         // init boule
-        boule = new createjs.Bitmap(Q.getResult("BouleDeNeige"));
+        boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
+        idFrame=2;
         boule.x=canvas.width/2;
         boule.y=canvas.height-Q.getResult("BouleDeNeigeF1").height;
         // init barre
@@ -179,16 +191,18 @@
         scene.addChild(avancement);
         scene.addChild(score);
         scene.addChild(decompte);
-        idInterval = window.setInterval(update,1);
-        createjs.Ticker.on("tick",Animation)
-        createjs.Ticker.interval = 25;
-        createjs.Ticker.framerate = 20*(vy/0.88);
+        // les interval ( timer , animation et update)
+        setInterval(PrepaDepart,1000);
+        //
+    }
+        
 
     function update(){
         //permet de rafraichir le temps
+        //console.log(idNextTuile);
         score.text=min +":"+seconds;
         createjs.Ticker.framerate = 20*(vy/0.88);
-        console.log(createjs.Ticker.framerate);
+        //console.log(createjs.Ticker.framerate);
         if(idNextTuile > 12){
             boolGameBegin = false;
         }
@@ -220,10 +234,9 @@
                 // colision en Y
                 
             }
-        }
             // update position objet
                 // boule
-        boule.x+=vx;
+                boule.x+=vx;
                 //Terrain
                 terrain.y+=vy
                 obstacleblue.y+=vy;
@@ -252,11 +265,9 @@
         }
         scene.update();
         if(boolGameBegin == false){
-
             if(appelonce == true){
-
+                alert(time);
                 clearInterval(time);
-                alert("FINI");
                 appelonce = false;
             }
             
@@ -268,7 +279,7 @@
             // note : 1 mettre la taille au min et 2 changer la tuile hors de l'ecran
             //console.log("ETAT",positionH,canvas.height,tuile.image.height);
             positionH = -ConstImageHeight; // test taille min entre les deux
-            console.log(idNextTuile);
+            //console.log(idNextTuile);
             if(idNextTuile > 11){
                 tuile.image = Q.getResult("T1");
             }
@@ -310,20 +321,26 @@
         function Depart()
         {
             console.log("GO");
-            time = setInterval(function() {
-            seconds++;
-            if (seconds >= 60){
+            createjs.Ticker.on("tick",Animation)
+            createjs.Ticker.interval = 25;
+            createjs.Ticker.framerate = 20*(vy/0.88);
+            idInterval = window.setInterval(update,1);
+            time = setInterval(function() 
+            {
+                seconds++;
+                if (seconds >= 60){
                 
-                min++;
-                seconds=0;
-                //console.log(min+ " "+seconds);
-            }
-        }, 1000);
+                    min++;
+                    seconds=0;
+                    //console.log(min+ " "+seconds);
+                }
+            }, 1000);
         }
         
         //fait le décompte du temps et lance la fonction Depart
         function PrepaDepart()
         {
+            scene.update();
             countdown--;
             if(countdown<=0)
             {
@@ -336,7 +353,8 @@
             }
             if(countdown>0)
             {
-                decompte.text=countdown;   
+                decompte.text=countdown; 
+                  
             }
             
         }
