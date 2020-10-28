@@ -26,7 +26,6 @@ xhr.onload = function () {
 console.log(this.responseText);
     var res = JSON.parse(this.responseText);
     document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
-    console.log(res);
 };
 xhr.send(data);
     
