@@ -78,10 +78,19 @@
     var appelonce = true;
     // var debug
     var debug = 1;
+    //variable lier au décompte et au lancement du timer
+    var countdown=3;
+    var seconds = 0;
+    var min = 0;
+    var time=0;
+    var score = new createjs.Text(min +":"+seconds, "100px Arial", "#000000");
+    var decompte = new createjs.Text(countdown, "100px Arial", "#000000");
+    
 
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
         initGame();
+         setInterval(PrepaDepart,1000);
     }
 
     function initGame(){
@@ -96,6 +105,17 @@
         terrain = new createjs.Container();
         fond = new createjs.Shape();
         avancement = new createjs.Shape();
+        
+        //affichage du décompte et du timer
+        
+        score.x = canvas.width-250;
+        score.y=100;
+        score.textBaseline = "alphabetic";
+        
+        decompte.x = canvas.width/2;
+        decompte.y=canvas.height/2;
+        decompte.textBaseline = "alphabetic";
+        
         // init tuile1
         var image1 = Q.getResult("T1");
         tuile1 = new createjs.Bitmap(image1);
@@ -163,11 +183,16 @@
         scene.addChild(terrain);
         scene.addChild(barre);
         scene.addChild(avancement);
+        scene.addChild(score);
+        scene.addChild(decompte);
+        
         idInterval = window.setInterval(update,1);
     }
 
     function update(){
         //console.log(obstacleblue.y);
+        //permet de rafraichir le temps
+            score.text=min +":"+seconds;
         if(idNextTuile > 12){
             boolGameBegin = false;
         }
@@ -244,6 +269,7 @@
         if(boolGameBegin == false){
 
             if(appelonce == true){
+                clearInterval(time);
                 alert("FINI");
                 appelonce = false;
             }
@@ -291,6 +317,41 @@
                     vx=0;
                     break;
                 }
+        }
+    
+    //lance le timer
+        function Depart()
+        {
+            console.log("GO");
+            time = setInterval(function() {
+            seconds++;
+            if (seconds >= 60){
+                
+                min++;
+                seconds=0;
+                //console.log(min+ " "+seconds);
+            }
+        }, 1000);
+        }
+        
+        //fait le décompte du temps et lance la fonction Depart
+        function PrepaDepart()
+        {
+            countdown--;
+            if(countdown<=0)
+            {
+                //Depart();
+                scene.removeChild(decompte);
+            }
+            if(countdown==0)
+            {
+                Depart();
+            }
+            if(countdown>0)
+            {
+                decompte.text=countdown;   
+            }
+            
         }
         
     
