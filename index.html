@@ -236,7 +236,7 @@
             }
             // collision obstcle bleu
             for(var cpt=obstacle.length;cpt>0;cpt--){
-                if((neige.x+neige.getBounds().width/2)*neige.scaleX>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x*boule.scaleX<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 && terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
+                if((neige.x-(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x-(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 || neige.x+(neige.getBounds().width/2*neige.scaleX)>obstacle[cpt]*canvas.width/6+canvas.width/4 && neige.x+(neige.getBounds().width/2*neige.scaleX)<obstacle[cpt]*canvas.width/6+canvas.width/6+canvas.width/4 )&& terrain.y>neige.y-(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt)-10) && terrain.y<neige.y+(neige.getBounds().height/2)*neige.scaleY-600+(200*(obstacle.length-cpt))){
                     if(vy>0.10){
                         vy = vy/2
                     }else{
@@ -260,7 +260,7 @@
             obstacleblue.y+=vy;
             if(terrain.y>canvas.height*3){
                 terrain.y=0;
-                    obstacleblue.y = canvas.width/2;
+                    //obstacleblue.y = canvas.width/2;
                 }
                 // tuile 
                 hPosTuile1+=vy;
