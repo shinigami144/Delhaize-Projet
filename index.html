@@ -146,7 +146,7 @@
         tuile2.scaleX = canvas.width/Q.getResult("T2").width;
         tuile2.scaleY = canvas.height/Q.getResult("T2").height;
         hPosTuile2 = -window.innerHeight;
-        console.log(ConstImageHeight);
+        //console.log(ConstImageHeight);
         idNextTuile=3;
 
         // init Obstacle Tuile 2
@@ -362,38 +362,38 @@
         /*--------------------------------------------------------------------------------------------------TIMER ZONE---------------------------------------------------------------------------------*/
         /*--------------------------------------------------------------------------------------------------OBSTACLE ZONE---------------------------------------------------------------------------------*/
         function InitObstacleBleu(obs){
-            var l = [0,0,0,2]
-            var ObsPosX = [25,75];
-            var ObsPosY = [50,75];
+            var l = [0,0,0,2,2,2,1,3,3,6]
+            var ObsPosX = [25,75,50,75,25,75,50,25,25,30,25,50,0,25,75,25,75,25,75];
+            var ObsPosY = [35,70,25,50,15,75,50,15,40,50,20,50,0,25,50,75,25,50,75];
             var a = 0;
             var b = 0;
             for(var i=0;i<l.length;i++){
                 for(var j=0;j<l[i];j++){
-                    console.log("")
+                    console.log("l et i" ,i,j, a, b);
                     var obstcleBleu = new createjs.Bitmap(Q.getResult("ObstacleBleu"));
-                    posY = canvas.height*i + l[a]*canvas.height/100;
-                    posX = ObsPosX[b]*canvas.width/100;
+                    var posY = -canvas.height*i + ObsPosY[a]*canvas.height/100;
+                    var posX = ObsPosX[b]*canvas.width/100;
                     obstcleBleu.setTransform(posX-Q.getResult("ObstacleBleu").width/2,posY-Q.getResult("ObstacleBleu").height/2);
                     obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width,Q.getResult("ObstacleBleu").height);
-                    obstacleL.push(obstcleBleu);
+                    obs.push(obstcleBleu);
                     terrain.addChild(obstcleBleu);
                     a++;
                     b++;
                 }
             }
-            console.log(obstacleL.length);
+            console.log();
         }
         function InitObstacleVert(obs){
-            var l = [0,2,3,0];
-            var ObsPosX = [30,70,30,50,70];
-            var ObsPosY = [35,50,65,35,70];
+            var l = [0,2,3,0,1,2,6,2,3,0];
+            var ObsPosX = [30,70,30,50,70,50,50,30,70,30,70,70,30,30,50,75,50,35,30];
+            var ObsPosY = [50,75,35,50,65,75,25,70,15,10,75,90,80,40,40,75,10,35,75];
             var a = 0;
             var b = 0;
             for(var i=0;i<l.length;i++){
                 for(var j=0;j<l[i];j++){
                     var obstacleVert = new createjs.Bitmap(Q.getResult("ObstacleVert"));
                     posX = ObsPosX[a]*canvas.width/100;
-                    posY = canevas.height*i  + ObsPosY[b]*canvas.height/100;
+                    posY = -canvas.height*i  + ObsPosY[b]*canvas.height/100;
                     obstacleVert.setTransform(posX-Q.getResult("ObstacleVert").width/2,posY-Q.getResult("ObstacleVert").height/2);
                     obstacleVert.setBounds(obstacleVert.x,obstacleVert.y,Q.getResult("ObstacleVert").width,Q.getResult("ObstacleVert").height);
                     obs.push(obstacleVert);
