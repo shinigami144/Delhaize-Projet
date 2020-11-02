@@ -57,7 +57,8 @@
        {id:"fond",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
        // {id:"boule",src:"./Asset/Sons/DelhaizeSound/GlidingSnowball.ogg"}, 
         {id:"depart",src:"./Asset/Sons/DelhaizeSound/RaceStart.ogg"},
-        {id:"fin",src:"./Asset/Sons/DelhaizeSound/RaceEnd.ogg"}
+        {id:"fin",src:"./Asset/Sons/DelhaizeSound/RaceEnd.ogg"},
+        {id:"iceBreaking",src:"./Asset/Sons/DelhaizeSound/IceBreaking.ogg"}
         
     ]);
     
@@ -255,6 +256,7 @@
                    if((terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height>neige.y-(neige.getBounds().height/2)*neige.scaleY && terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height<neige.y+(neige.getBounds().height/2)*neige.scaleY)||(terrain.y+obstacleL[cpt].y>neige.y-(neige.getBounds().height/2)*neige.scaleY && terrain.y+obstacleL[cpt].y<(neige.y+neige.getBounds().height/2)*neige.scaleY)){
                         terrain.removeChild(obstacleL[cpt]);
                         obstacleL.splice(cpt,1);
+                        createjs.Sound.play("iceBreaking");
                         scene.update();
                         if(vy>0.10){
                             vy = vy/2
