@@ -28,8 +28,10 @@ console.log(this.responseText);
     document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
 };
 xhr.send(data);
-    
 </script>
+<form action="index.php">
+    <button type="submit">Retour vers le jeu</button>
+</form>
 <?php
 //header("Location: inscription.php");
 ?>

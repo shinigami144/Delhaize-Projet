@@ -6,5 +6,5 @@ $langue = $_POST['langue'];
 
 $_SESSION['lan']= $langue;
 
-header("Location: inscription.php")
+header("Location: senario.php")
 ?>
