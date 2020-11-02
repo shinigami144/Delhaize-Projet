@@ -25,12 +25,15 @@
 </body>
 <script src="./easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
+<script src="./soundjs.min.js"></script>
 <script>
     
     // loading all assets
     var Q = new createjs.LoadQueue();
+    createjs.Sound.alternateExtensions = ["mp3"];
     Q.on("complete",completeLoading,this);
     Q.installPlugin(createjs.Sound);
+    Q.addEventListener("complete", doneLoading);
     // Image
     Q.loadManifest([
 
@@ -51,7 +54,11 @@
         {id:"BouleDeNeigeF4",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_4.png"},
         {id:"ObstacleBleu",src:"./Asset/Graphique/Obstacle/obstacle_glace.png"},
         {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
-        {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"}
+        {id:"Sound1",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
+        {id:"fond",src:"./Asset/Sons/DelhaizeSound/FrozenBGM.ogg"},
+       // {id:"boule",src:"./Asset/Sons/DelhaizeSound/GlidingSnowball.ogg"}, 
+        {id:"depart",src:"./Asset/Sons/DelhaizeSound/RaceStart.ogg"},
+        {id:"fin",src:"./Asset/Sons/DelhaizeSound/RaceEnd.ogg"}
         
     ]);
     
@@ -94,12 +101,33 @@
 
 
 
+    function doneLoading(event) {
+        canvas.onclick = handleClick;
+    }
+    
+    function handleClick() {
+		//prevent extra clicks and hide text
+		canvas.onclick = null;
+		
+        console.log("test");
+
+		// indicate the player is now on screen
+		createjs.Sound.play("fond");
+
+		
+	}
+    
     // var debug
     var debug = 1;
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
         initGame();
+         
        
+    }
+    function handleFileLoad(event)
+    {
+        console.log("preload:",event.id,event.src);
     }
 
     function Animation(){
@@ -191,11 +219,19 @@
         scene.addChild(avancement);
         scene.addChild(score);
         scene.addChild(decompte);
+        //Lance le son au debut du jeu
+        
+        createjs.Sound.play("fond",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 1});
         // les interval ( timer , animation et update)
         setInterval(PrepaDepart,1000);
+        //createjs.Sound.play("depart");
         //
     }
-        
+    function Playson()
+    {
+        createjs.Sound.play("fond");
+    
+    }
 
     function update(){
         //permet de rafraichir le temps
@@ -266,7 +302,8 @@
         scene.update();
         if(boolGameBegin == false){
             if(appelonce == true){
-                alert(time);
+                createjs.Sound.play("fin");
+                alert("FINI");
                 clearInterval(time);
                 appelonce = false;
             }
@@ -335,27 +372,37 @@
                     //console.log(min+ " "+seconds);
                 }
             }, 1000);
+           // clearInterval(PrepaDepart);
         }
         
         //fait le décompte du temps et lance la fonction Depart
         function PrepaDepart()
         {
             scene.update();
+            console.log(countdown);
+            
+            if(countdown==3)
+            {
+                createjs.Sound.play("depart");
+            }
             countdown--;
-            if(countdown<=0)
+            if(countdown<0)
             {
                 //Depart();
                 scene.removeChild(decompte);
+                //clearInterval(PrepaDepart);
+                
             }
-            if(countdown==0)
+            if(countdown==-1)
             {
                 Depart();
             }
-            if(countdown>0)
+            if(countdown>-1)
             {
                 decompte.text=countdown; 
                   
             }
+            
             
         }
         
