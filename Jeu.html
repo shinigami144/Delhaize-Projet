@@ -113,7 +113,7 @@
 		//prevent extra clicks and hide text
 		canvas.onclick = null;
 		
-        console.log("test");
+        //console.log("test");
 
 		// indicate the player is now on screen
 		createjs.Sound.play("fond");
@@ -130,7 +130,7 @@
     
     function handleFileLoad(event)
     {
-        console.log("preload:",event.id,event.src);
+        //console.log("preload:",event.id,event.src);
     }
 
     function Animation(){
@@ -301,7 +301,7 @@
             tuile1.setTransform(0,hPosTuile1,tuile1.scaleX,tuile1.scaleY);
         }
         if(debug == 1){
-            console.log(tuile1,tuile2);
+            //console.log(tuile1,tuile2);
             debug = 0;
         }
         // ------------------------------------------------------------------------------------ END GAME -------------------------------------------------------------------------------------------//
@@ -415,7 +415,7 @@
             var b = 0;
             for(var i=0;i<l.length;i++){
                 for(var j=0;j<l[i];j++){
-                    console.log("l et i" ,i,j, a, b);
+                    //console.log("l et i" ,i,j, a, b);
                     var obstcleBleu = new createjs.Bitmap(Q.getResult("ObstacleBleu"));
                     var posY = -canvas.height*i + ObsPosY[a]*canvas.height/100;
                     var posX = ObsPosX[b]*canvas.width/100;
