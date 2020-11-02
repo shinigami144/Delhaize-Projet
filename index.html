@@ -151,6 +151,7 @@
 
         // init Obstacle Tuile 2
         InitObstacleBleu(obstacleL);
+        InitObstacleVert(obstacleL);
 
 
         boule = new createjs.Bitmap(Q.getResult("BouleDeNeigeF1"));
@@ -361,26 +362,49 @@
         /*--------------------------------------------------------------------------------------------------TIMER ZONE---------------------------------------------------------------------------------*/
         /*--------------------------------------------------------------------------------------------------OBSTACLE ZONE---------------------------------------------------------------------------------*/
         function InitObstacleBleu(obs){
-            var l = [0,1,2,3,4,5,6,7,8,9,10,11]
-            for(var i =0;i<11;i++){
+            var l = [0,0,0,2]
+            var ObsPosX = [25,75];
+            var ObsPosY = [50,75];
+            var a = 0;
+            var b = 0;
+            for(var i=0;i<l.length;i++){
                 for(var j=0;j<l[i];j++){
+                    console.log("")
                     var obstcleBleu = new createjs.Bitmap(Q.getResult("ObstacleBleu"));
-                    posY = i*-canvas.height + Math.floor(Math.random()*canvas.height);
-                    posX = (canvas.width/4)+10 + Math.floor(Math.random()*((canvas.width/2)-10));
+                    posY = canvas.height*i + l[a]*canvas.height/100;
+                    posX = ObsPosX[b]*canvas.width/100;
                     obstcleBleu.setTransform(posX-Q.getResult("ObstacleBleu").width/2,posY-Q.getResult("ObstacleBleu").height/2);
                     obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width,Q.getResult("ObstacleBleu").height);
                     obstacleL.push(obstcleBleu);
                     terrain.addChild(obstcleBleu);
+                    a++;
+                    b++;
                 }
             }
             console.log(obstacleL.length);
         }
-        function ReplaceObstacleBleu(){
+        function InitObstacleVert(obs){
+            var l = [0,2,3,0];
+            var ObsPosX = [30,70,30,50,70];
+            var ObsPosY = [35,50,65,35,70];
+            var a = 0;
+            var b = 0;
+            for(var i=0;i<l.length;i++){
+                for(var j=0;j<l[i];j++){
+                    var obstacleVert = new createjs.Bitmap(Q.getResult("ObstacleVert"));
+                    posX = ObsPosX[a]*canvas.width/100;
+                    posY = canevas.height*i  + ObsPosY[b]*canvas.height/100;
+                    obstacleVert.setTransform(posX-Q.getResult("ObstacleVert").width/2,posY-Q.getResult("ObstacleVert").height/2);
+                    obstacleVert.setBounds(obstacleVert.x,obstacleVert.y,Q.getResult("ObstacleVert").width,Q.getResult("ObstacleVert").height);
+                    obs.push(obstacleVert);
+                    terrain.addChild(obstacleVert);
+                    a++;
+                    b++;
+                }
+            }
+           //var obstacleVert = new createjs.Bitmap(Q.getResult("ObstacleVert"));
 
-
-        }
-        function resetObstacleListe(obstacleL){
-
+        
         }
         function UpdatePositionObstacle(obstacleL,vitesse){
             for(var i;i<obstacleL.length;i++){
