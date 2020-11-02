@@ -188,7 +188,7 @@
         neige.scaleX=.5;
         neige.scaleY=.5;
         boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
-        boule.x= -boule.getBounds().width/2;
+        boule.x = -boule.getBounds().width/2;
         boule.y = -boule.getBounds().height/2
         neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         neige.x=canvas.width/2;
@@ -252,6 +252,9 @@
             for(var cpt=0;cpt<obstacleL.length;cpt++){
                 if(neige.x-((neige.getBounds().width/2)*neige.scaleX)>obstacleL[cpt].x && neige.x-((neige.getBounds().width/2)*neige.scaleX)<obstacleL[cpt].x+obstacleL[cpt].getBounds().width ||(neige.x+(neige.getBounds().width/2)*neige.scaleX>obstacleL[cpt].x && neige.x+((neige.getBounds().width/2)*neige.scaleX)<obstacleL[cpt].x+obstacleL[cpt].getBounds().width )){
                    if((terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height>neige.y-(neige.getBounds().height/2)*neige.scaleY && terrain.y+obstacleL[cpt].y+obstacleL[cpt].getBounds().height<neige.y+(neige.getBounds().height/2)*neige.scaleY)||(terrain.y+obstacleL[cpt].y>neige.y-(neige.getBounds().height/2)*neige.scaleY && terrain.y+obstacleL[cpt].y<(neige.y+neige.getBounds().height/2)*neige.scaleY)){
+                        terrain.removeChild(obstacleL[cpt]);
+                        obstacleL.splice(cpt,1);
+                        scene.update();
                         if(vy>0.10){
                             vy = vy/2
                         }else{
