@@ -20,7 +20,9 @@
     </style>
 </head>
 <body>
-    
+    <form id="form" action="./partageFB.php" method="POST">
+        <input  name="score" id="score" type="hidden" value="">
+    </form>
     <canvas id="monSuperCanvas"></canvas>
 </body>
 <script src="./easeljs.min.js"></script>
@@ -462,12 +464,9 @@
         /*-------------------------------------------------------------------------------------------------- PARTAGE AVEC AUTRE PAGE -----------------------------------------------------------------*/
 
         function SendPagePartage(){
-            var request =  new XMLHttpRequest();
-            request.open("POST","./partageFB.php",true);
-            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            var data = min+":"+seconds;
-            request.send(data);
-            window.location.replace("./partageFB.php");
+            var inputScore =  document.getElementById("score");
+            inputScore.value = min + ":" + seconds;
+            document.getElementById("from").submit();
 
         }
 
