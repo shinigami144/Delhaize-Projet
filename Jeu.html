@@ -116,7 +116,7 @@
         //console.log("test");
 
 		// indicate the player is now on screen
-		createjs.Sound.play("fond");
+		//createjs.Sound.play("fond");
 
 		
 	}
@@ -215,7 +215,7 @@
         scene.addChild(avancement);
         scene.addChild(score);
         scene.addChild(decompte);
-        createjs.Sound.play("fond",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 1});
+        createjs.Sound.play("fond",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.25});
         // les interval ( timer , animation et update)
         scene.update();
         setInterval(PrepaDepart,1000);
@@ -309,7 +309,7 @@
         if(boolGameBegin == false){
             if(appelonce == true){
                 createjs.Sound.play("fin");
-                alert("Finis en "+time);
+                alert("Finis en "+min+":"+seconds);
                 clearInterval(time);
                 appelonce = false;
                 SendPagePartage();
@@ -385,7 +385,7 @@
         {
             if(countdown==3)
             {
-                createjs.Sound.play("depart");
+                createjs.Sound.play("depart",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: 0, volume: 0.5});
             }
             countdown--;
             scene.update();
