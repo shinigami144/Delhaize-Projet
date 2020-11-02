@@ -34,7 +34,7 @@ $score=$_POST['score'];
                         echo '<div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_EN/sdk.js#xfbml=1&version=v8.0" nonce="BDuAosSw"></script>
                             <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-                            <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I played the delhaize Frozen II Game" data-url="http://delhaize-projet/partageFB.php" data-related="Delhaize,Ludus" data-dnt="true" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I played the delhaize Frozen II Game My score was '.$score.'" data-url="http://delhaize-projet/partageFB.php" data-related="Delhaize,Ludus" data-dnt="true" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                         ';
                     
                         }
@@ -46,8 +46,8 @@ $score=$_POST['score'];
                             echo '<div id="fb-root"></div>
                             <script async defer crossorigin="anonymous" src="https://connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v8.0" nonce="BDuAosSw"></script>
                             <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Comment on dit partager en neerlandais ?</a></div>
-                            <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I played the delhaize Frozen II Game" data-url="http://delhaize-projet/partageFB.php" data-related="Delhaize,Ludus" data-dnt="true" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                            ';
+                            <a href="https://twitter.com/intent/tweet?button_hashtag=share&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I played the delhaize Frozen II Game My score was '.$score.'" data-url="http://delhaize-projet/partageFB.php" data-related="Delhaize,Ludus" data-dnt="true" data-show-count="false">Tweet #share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        ';
 
                         }
                         else{
