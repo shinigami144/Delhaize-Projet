@@ -29,7 +29,7 @@ console.log(this.responseText);
 };
 xhr.send(data);
 </script>
-<form action="index.php">
+<form action="jeu.html">
     <button type="submit">Retour vers le jeu</button>
 </form>
 <?php

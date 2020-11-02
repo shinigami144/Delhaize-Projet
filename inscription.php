@@ -25,7 +25,7 @@
                 ticket-id : <input type="txt" name="ticket-id" id='ticketid'/> <br/>
                 ticket-time : <input type="number" name="ticket-time" id='tickettime' /> <br/>
                     
-                <a href='jeu.php' >Rejouer!</a>
+                <a href='jeu.html' >Rejouer!</a>
                     <input type="submit"  value="envoyer"/></p>
             </form>
         </div>
