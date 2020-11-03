@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo $_SESSION['lan'];
+//echo $_SESSION['lan'];
 ?>
 
 <html>
