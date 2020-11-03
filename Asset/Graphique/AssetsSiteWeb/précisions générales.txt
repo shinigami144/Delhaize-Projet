@@ -1,0 +1,3 @@
+LE BACKGROUND EST TOUJOURS EN DÉGRADÉ DE CES COULEURS :
+
+background: linear-gradient(#472234, #1A364B);
