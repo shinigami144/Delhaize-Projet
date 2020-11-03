@@ -66,6 +66,7 @@
 <script src="./easeljs.min.js"></script>
 <script src="./preloadjs.min.js"></script>
 <script src="./soundjs.min.js"></script>
+<script src="delhaize_ga.js"></script>
 <script>
     
     // loading all assets
@@ -145,6 +146,7 @@
     var time=0;
     var score; 
     var decompte;
+    var duration =0;
 
 
     
@@ -270,6 +272,7 @@
         scene.addChild(decompte);
         createjs.Sound.play("fond",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: -1, volume: 0.25});
         // les interval ( timer , animation et update)
+        ga("xmas_2020_game_start",null);
         scene.update();
         setInterval(PrepaDepart,1000);
         //
@@ -365,6 +368,7 @@
                 alert("Finis en "+min+":"+seconds);
                 clearInterval(time);
                 appelonce = false;
+                ga("xmas_2020_game_complete",null);
                 SendPagePartage();
             }
             
@@ -441,6 +445,12 @@
                 createjs.Sound.play("depart",{interrupt: createjs.Sound.INTERRUPT_ANY, loop: 0, volume: 0.5});
             }
             countdown--;
+            duration++;
+            if(duration==15)
+            {
+                ga("xmas_2020_game_play",{duration:min+":"+seconds"min"});
+                duration=0;
+            }
             scene.update();
             if(countdown<0)
             {
