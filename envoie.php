@@ -4,9 +4,9 @@ $mail = $_POST['user-email'];
 $ticketid = $_POST['ticket-id'];
 $tickettime = $_POST['ticket-time'];
 
-echo $mail."<br/>";
-echo $ticketid."<br/>";
-echo $tickettime."<br/>";
+//echo $mail."<br/>";
+//echo $ticketid."<br/>";
+//echo $tickettime."<br/>";
     
 ?>
 <p id='demo'>
@@ -25,7 +25,13 @@ xhr.onload = function () {
 
 console.log(this.responseText);
     var res = JSON.parse(this.responseText);
-    document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
+    if (res.error){
+        document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
+    }else{
+        if(res.winner){
+            document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winner = "+res.winner;
+        }
+    }
 };
 xhr.send(data);
 </script>
