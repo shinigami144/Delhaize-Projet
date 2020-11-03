@@ -37,7 +37,7 @@ console.log(this.responseText);
 };
 xhr.send(data);
 </script>
-<form action="jeu.html">
+<form action="Jeu.html">
     <?php
     if ($_SESSION['lan']== 'fr'){
         echo '<button type="submit">Retour vers le jeu</button>';
