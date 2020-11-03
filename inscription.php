@@ -18,18 +18,15 @@
         <?php
         session_start();
         ?>
-       <div class='inscription'>
-            <h1 style="text-decoration: underline;">Inscription</h1>
-            <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA"  method="POST">
-                <p >
+            
+            <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA"  method="POST"><h1 style="text-decoration: underline;">Inscription</h1>
+                <p>
                 email : <input type="email" name="user-email" id='mail'/><br/>
                 ticket-id : <input type="txt" name="ticket-id" id='ticketid'/> <br/>
                 ticket-time : <input type="number" name="ticket-time" id='tickettime' /> <br/>
-                    
                 <a href='jeu.html' >Rejouer!</a>
                     <input type="submit"  value="envoyer"/></p>
             </form>
-        </div>
         
         <!--bouton partager-->
         
