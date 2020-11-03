@@ -1,12 +1,14 @@
 <?php
+session_start();
+
 
 $mail = $_POST['user-email'];
 $ticketid = $_POST['ticket-id'];
 $tickettime = $_POST['ticket-time'];
 
-echo $mail."<br/>";
-echo $ticketid."<br/>";
-echo $tickettime."<br/>";
+//echo $mail."<br/>";
+//echo $ticketid."<br/>";
+//echo $tickettime."<br/>";
     
 ?>
 <p id='demo'>
@@ -25,12 +27,29 @@ xhr.onload = function () {
 
 console.log(this.responseText);
     var res = JSON.parse(this.responseText);
-    document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
+    if (res.error){
+        document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
+    }else{
+        if(res.winner){
+            document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winner = "+res.winner;
+        }
+    }
 };
 xhr.send(data);
 </script>
 <form action="jeu.html">
-    <button type="submit">Retour vers le jeu</button>
+    <?php
+    if ($_SESSION['lan']== 'fr'){
+        echo '<button type="submit">Retour vers le jeu</button>';
+    }else{if($_SESSION['lan']== 'en'){
+        echo '<button type="submit">Back to the game</button>';
+    }else{if($_SESSION['lan']== 'nl'){
+        echo '<button type="submit">terug naar het spel</button>';
+    }else{echo 'error please chose a language';}
+         }}
+    
+    ?>
+    
 </form>
 <?php
 //header("Location: inscription.php");
