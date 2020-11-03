@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 
 $mail = $_POST['user-email'];
 $ticketid = $_POST['ticket-id'];
@@ -36,7 +38,18 @@ console.log(this.responseText);
 xhr.send(data);
 </script>
 <form action="jeu.html">
-    <button type="submit">Retour vers le jeu</button>
+    <?php
+    if ($_SESSION['lan']== 'fr'){
+        echo '<button type="submit">Retour vers le jeu</button>';
+    }else{if($_SESSION['lan']== 'en'){
+        echo '<button type="submit">Back to the game</button>';
+    }else{if($_SESSION['lan']== 'nl'){
+        echo '<button type="submit">terug naar het spel</button>';
+    }else{echo 'error please chose a language';}
+         }}
+    
+    ?>
+    
 </form>
 <?php
 //header("Location: inscription.php");
