@@ -1,6 +1,6 @@
 
 button{
-    width: 50%;
+    width: 20%;
     height: auto;
     margin: auto;
     
@@ -15,7 +15,7 @@ body{
 }
 div{
     width: 100%;
-    margin: 15% auto 15% auto;
+    margin: 5% auto 5% auto;
     align-content: center;
 text-align: center;
 }
