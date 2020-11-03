@@ -248,7 +248,7 @@
         boule.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         boule.x = -boule.getBounds().width/2;
         boule.y = -boule.getBounds().height/2
-        neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
+        neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width-60,Q.getResult("BouleDeNeigeF1").height-60);
         neige.x=canvas.width/2;
         neige.y=canvas.height - (boule.getBounds().height/2)*canvasScaleY;
         neige.addChild(boule);
