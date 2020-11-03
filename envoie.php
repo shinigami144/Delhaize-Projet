@@ -14,7 +14,11 @@ $tickettime = $_POST['ticket-time'];
 <p id='demo'>
 
 </p>
+<script src="delhaize_ga.js"></script>
 <script>
+var now=new Date();
+var heure=now.getHours();
+var minute =now.getMinutes();
 var data = new FormData();
 data.append('app-token', 'XLGFHEKSPFJTHEPPPA');
 data.append('user-email','<?php echo $mail ?>' );
@@ -29,9 +33,16 @@ console.log(this.responseText);
     var res = JSON.parse(this.responseText);
     if (res.error){
         document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
+        ga("xmas_2020_game_game_ticket_record_fail",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
+        
     }else{
         if(res.winner){
-            document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winner = "+res.winner;
+            document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
+            ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
+        }
+        if(!res.winner){
+            document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
+            ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
         }
     }
 };
