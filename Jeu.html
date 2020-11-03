@@ -469,8 +469,8 @@
                     var obstcleBleu = new createjs.Bitmap(Q.getResult("ObstacleBleu"));
                     var posY = -canvas.height*i + ObsPosY[a]*canvas.height/100;
                     var posX = ObsPosX[b]*canvas.width/100;
-                    obstcleBleu.setTransform(posX-Q.getResult("ObstacleBleu").width/2,posY-Q.getResult("ObstacleBleu").height/2);
-                    obstcleBleu.scaleX = canvasScaleX;
+                    obstcleBleu.setTransform(posX-(Q.getResult("ObstacleBleu").width*canvasScaleX/2),posY-(Q.getResult("ObstacleBleu").height*canvasScaleY/2));
+                    obstcleBleu.scaleX = canvasScaleX()
                     obstcleBleu.scaleY = canvasScaleY;
                     obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width * obstcleBleu.scaleX,Q.getResult("ObstacleBleu").height*obstcleBleu.scaleY);
                     obs.push(obstcleBleu);
@@ -492,9 +492,9 @@
                     var obstacleVert = new createjs.Bitmap(Q.getResult("ObstacleVert"));
                     posX = ObsPosX[a]*canvas.width/100;
                     posY = -canvas.height*i  + ObsPosY[b]*canvas.height/100;
-                    obstacleVert.setTransform(posX-Q.getResult("ObstacleVert").width/2,posY-Q.getResult("ObstacleVert").height/2);
                     obstacleVert.scaleX = canvasScaleX;
                     obstacleVert.scaleY = canvasScaleY;
+                    obstacleVert.setTransform(posX-(Q.getResult("ObstacleVert").width*canvasScaleX/2),posY-(Q.getResult("ObstacleVert").height*canvasScaleY/2),obstacleVert.scaleX,obstacleVert.scaleY);
                     obstacleVert.setBounds(obstacleVert.x,obstacleVert.y,Q.getResult("ObstacleVert").width*obstacleVert.scaleX ,Q.getResult("ObstacleVert").height * obstacleVert.scaleY);
                     obs.push(obstacleVert);
                     terrain.addChild(obstacleVert);
