@@ -6,6 +6,10 @@ session_start();
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="senario.css"/>
     </head>
+    <script src="delhaize_ga.js"></script>
+    <script>
+        ga("xmas_2020_game_impression",null);
+    </script>
     <body>
         <form action="tuto.php">
         <?php
