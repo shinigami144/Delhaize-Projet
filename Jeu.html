@@ -257,7 +257,8 @@
         avancement.setBounds(0,0,Q.getResult("Olaf").width,Q.getResult("Olaf").height);
         avancement.scaleX = canvasScaleX;
         avancement.scaleY = canvasScaleY;
-        avancement.y = window.innerHeight ;
+        avancement.y = window.innerHeight - (avancement.getBounds().height/2)*avancement.scaleY;
+        avancement.X = -avancement.getBounds().width/2
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
