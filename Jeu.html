@@ -192,6 +192,8 @@
         // init canevas
         document.addEventListener("keydown", down);
         document.addEventListener("keyup", up);
+        document.addEventListener("touchstart",downAndroid);
+        document.addEventListener("touchend",upAndroid);
         canvasScaleX = window.innerWidth/1268.8;
         canvasScaleY = window.innerHeight/792;
         canvas.width= window.innerWidth;
@@ -394,27 +396,39 @@
     /*--------------------------------------------------------------------------------------------------INPUT USER ZONE---------------------------------------------------------------------------------*/
     // Movement Function 
     function down(e){
-            switch(e.keyCode){
-                case 37:
-                    vx=-2.2;
-                    break;
-                case 39:
-                    vx=2.2;
-                    break;
-                }
-
+        switch(e.keyCode){
+            case 37:
+                 vx=-1;
+            break;
+            case 39:
+                vx=1;
+            break;
         }
+
+    }
+    
+    function downAndroid(e){
+        if(e.touches[0].clientX<window.innerWidth/3){
+            vx=-1;
+        }else if(e.touches[0].clientX>(window.innerWidth/3)*2){
+            vx=1;
+        }
+    }
         
     function up(e){
-            switch(e.keyCode){
-                case 37:
-                    vx=0;
-                    break;
-                case 39:
-                    vx=0;
-                    break;
-                }
+        switch(e.keyCode){
+            case 37:
+                vx=0;
+            break;
+            case 39:
+                vx=0;
+            break;
         }
+    }
+    
+    function upAndroid(e){
+        vx=0;
+    }
     
     /*--------------------------------------------------------------------------------------------------INPUT USER ZONE---------------------------------------------------------------------------------*/
     /*--------------------------------------------------------------------------------------------------TIMER ZONE---------------------------------------------------------------------------------*/
