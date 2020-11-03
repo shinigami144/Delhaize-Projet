@@ -28,26 +28,63 @@ session_start();
         @font-face { font-family: "Mont"; src: url('https://dl.dropboxusercontent.com/s/vycatbfi5hvz7he/Mont-Heavy.otf') ;}
         body{height: 100%;margin: 0;padding: 0;font-family: Arial, Verdana, sans-serif;
             font-size: 12px;font-weight: normal;color: #ccc;background-color: #F4F4F4;}
-        input#fname {margin-top: -22px;margin-left: 31%;padding: 14px;width: 320px;
-            border: 2px solid #E07B74;font-family: muli;font-size: 12px;background-color: white;
-            color: #484948;}
-        .inscription_main {width: 544px;margin: 0 auto;color:white;font-size: 12px;font-family: "Muli";}
-        .inscription_info {background-color:white;padding: 10px;margin-top:10px;}
-        .surlignetexte {box-shadow: 0 -10px  #FFE963 inset;font-family: "mont";color: #484948;font-size: 15px;text-transform: uppercase;margin-right: 15px;}
+        input#fname {margin-top: -3%;margin-left: 31%;padding: 2%;width: 100%;
+            border: 2px solid #E07B74;font-family: muli;font-size: 12pt;background-color: white;
+            color: #484948;height: 60%;}
+        .inscription_main {width: 40%;margin-left: 45%;color:white;font-size: 12pt;font-family: "Muli";margin-top: -2%;}
+        .inscription_info {background-color:white;padding: 1%;margin-top:1%;height: 10%;}
+        .surlignetexte {height: auto; box-shadow: 0 -10px  #FFE963 inset;font-family: "mont";color: #484948;font-size: 15pt;text-transform: uppercase;margin-right: 1%;}
         </style>   
     </head>
-    <body>
-        <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;">
+    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('/Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_inscription_PNG8.png');background-size: 100% 100%;">
+        <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_eng_PNG8.png"/ style="margin-left: 45%;margin-top:-15%;">
+        <?php 
+        if($_SESSION['lan']=='en'){
+            echo '<form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
             <div class="inscription_info">
-                <span class="surlignetexte">E-MAIL</span> <input type="email" name="user-email" id='mail' id="fname"/>
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mai" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET NUMBER</span> <input type="txt" name="ticket-id" id='ticketid' id="fname"/>
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET TIME</span> <input type="number" name="ticket-time" id='tickettime' id="fname"/>
+				<span class="surlignetexte">TICKET TIME</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
-            <input type="submit" value="envoyer"/>
-        </form>
+            <input type="image" form="form" style="margin-top: 10%;
+            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+        </form>';
+        }else{if($_SESSION['lan']=='nl'){
+            echo '<form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
+            <div class="inscription_info">
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
+            </div>
+            <div class="inscription_info">
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
+            </div>
+            <div class="inscription_info">
+				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+            </div>
+            <input type="image" form="form" style="margin-top: 10%;
+            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+        </form>';
+        }
+            
+        else{
+            echo '<form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
+            <div class="inscription_info">
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
+            </div>
+            <div class="inscription_info">
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
+            </div>
+            <div class="inscription_info">
+				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+            </div>
+            <input type="image" form="form" style="margin-top: 10%;
+            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+        </form>';
+        }}
+        ?>
+        
     </body>
 </html>
