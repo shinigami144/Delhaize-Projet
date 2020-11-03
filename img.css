@@ -1,22 +1,73 @@
 
-button{
-    width: 20%;
-    height: auto;
-    margin: auto;
-    
-}
-img{
-    width: 100%;
-    height: auto;
-   
-}
+
+
 body{
     background-color: dimgrey;
+    background-image: url("./Asset/Graphique/AssetsSiteWeb/page_langues/background_page_langue_PNG8.png");
 }
-div{
-    width: 100%;
-    margin: 5% auto 5% auto;
-    align-content: center;
-text-align: center;
+
+@media screen and (orientation:portrait) {
+    #Group{
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        row-gap: 12.5%;
+        height: 100%;
+        width: 100%;
+    }
+    form{
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .Contenu{
+        height: 100%;
+        align-content: center;
+        text-align: center;
+        align-self: center;
+    }
+    button{
+        width: 50%;
+        height: 70%;
+        margin: auto;
+        
+    }
+    img{
+        width: 100%;
+        height: auto;
+       
+    }
 }
+
+@media screen and (orientation:landscape) {
+    #Group{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 12.5%;
+        height: 100%;
+        width: 100%;
+    }
+    form{
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .Contenu{
+        width: 100%;
+        align-content: center;
+        text-align: center;
+        align-self: center;
+    }
+    button{
+        width: 100%;
+        height: auto;
+        margin: auto;
+        
+    }
+    img{
+        width: 100%;
+        height: auto;
+       
+    }
+}
+
+
+
 
