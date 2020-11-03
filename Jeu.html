@@ -56,7 +56,9 @@
         {id:"BouleDeNeigeF4",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_4.png"},
         {id:"ObstacleBleu",src:"./Asset/Graphique/Obstacle/obstacle_glace.png"},
         {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
-       {id:"fond",src:"./Asset/Sons/DelhaizeSound/Some-Things-Never-Change-From-Frozen-2InstrumentalAudio-Only.ogg"},
+        {id:"Olaf",src:"./Asset/Graphique/BarreProgression/Olaf"},
+        {id:"Barre",src:"./Asset/Graphique/BarreProgression/Barre"},
+        {id:"fond",src:"./Asset/Sons/DelhaizeSound/Some-Things-Never-Change-From-Frozen-2InstrumentalAudio-Only.ogg"},
        // {id:"boule",src:"./Asset/Sons/DelhaizeSound/GlidingSnowball.ogg"}, 
         {id:"depart",src:"./Asset/Sons/DelhaizeSound/RaceStart.ogg"},
         {id:"fin",src:"./Asset/Sons/DelhaizeSound/RaceEnd.ogg"},
@@ -282,7 +284,7 @@
             
             //Vitesse Joueur
             if(vy<vMax*canvasScaleY){
-                vy+=(1/100000) * canvasScaleY;
+                vy+=(1/10000) * canvasScaleY;
             }
             //Terrain
             terrain.y+=vy
@@ -298,7 +300,7 @@
             avancement.y-=(vy/10);
             // augmentation de la vitesse
             if(vy<vMax*canvasScaleY){
-                vy+=(1/100000)* canvasScaleY;
+                vy+=(1/10000)* canvasScaleY;
             }
             tuile2.setTransform(0,hPosTuile2,tuile2.scaleX,tuile2.scaleY);
             tuile1.setTransform(0,hPosTuile1,tuile1.scaleX,tuile1.scaleY);
