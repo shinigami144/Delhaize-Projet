@@ -69,8 +69,8 @@
     var canvas
     var scene;
     var terrain;
-    var vMax = .88;
-    var vMin = .05
+    var vMax = .88 ;
+    var vMin = .05 ;
     var scale;
     // tuile
     var hPosTuile1;
@@ -94,6 +94,7 @@
     vy = 0.22;
     var appelonce = true;
     var idFrame;
+    var canvasScaleX, canvasScaleY;
     
     //variable lier au décompte et au lancement du timer
     var countdown=3;
@@ -147,6 +148,8 @@
         // init canevas
         document.addEventListener("keydown", down);
         document.addEventListener("keyup", up);
+        canvasScaleX = window.innerWidth/1268.8;
+        canvasScaleY = window.innerHeight/792;
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
         obstacleL= [];
@@ -196,7 +199,7 @@
         boule.y = -boule.getBounds().height/2
         neige.setBounds(0,0,Q.getResult("BouleDeNeigeF1").width,Q.getResult("BouleDeNeigeF1").height);
         neige.x=canvas.width/2;
-        neige.y=canvas.height - boule.getBounds().height;
+        neige.y=canvas.height - (boule.getBounds().height/2)*canvasScaleY;
         neige.addChild(boule);
         // init barre
         barre.graphics.beginFill("rgb(255,0,0)");
@@ -246,10 +249,10 @@
 
             if(neige.x>(canvas.width/4)*3-neige.getBounds().width/2*neige.scaleX){
                 neige.x=(canvas.width/4)*3-neige.getBounds().width/2*neige.scaleX;
-                if(vy>0.10){
+                if(vy>(vMin*2)*canvasScaleY){
                     vy = vy/2
                 }else{
-                    vy = 0.05
+                    vy = vMin *canvasScaleY;
                 }
             }
             // collision obstcle bleu
@@ -260,26 +263,26 @@
                         obstacleL.splice(cpt,1);
                         createjs.Sound.play("iceBreaking");
                         scene.update();
-                        if(vy>0.10){
+                        if(vy>(vMin*2)*canvasScaleY){
                             vy = vy/2
                         }else{
-                            vy = 0.05
+                            vy = vMin*canvasScaleY;
                         }
                     }
                 }
             }
             
             //Modification de la taille joueur
-            scale = ((100/(vMax-vMin)*(vy-vMin)/2)+50)/100;
+            scale = ((100/((vMax*canvasScaleY)-(vMin*canvasScaleY))*(vy-(vMin*canvasScaleY))/2)+50)/100;
             //console.log(scale+"%");
-            neige.scaleX = scale;
-            neige.scaleY = scale;
+            neige.scaleX = scale * canvasScaleX;
+            neige.scaleY = scale * canvasScaleY;
             neige.height = (neige.y+neige.getBounds().width)*neige.scaleY;
             neige.width = (neige.x+neige.getBounds().height)*neige.scaleX;
             
             //Vitesse Joueur
-            if(vy<vMax){
-                vy+=0.001;
+            if(vy<vMax*canvasScaleY){
+                vy+=(1/100000) * canvasScaleY;
             }
             //Terrain
             terrain.y+=vy
@@ -294,8 +297,8 @@
             // barre 
             avancement.y-=(vy/10);
             // augmentation de la vitesse
-            if(vy<vMax){
-                vy+=0.001;
+            if(vy<vMax*canvasScaleY){
+                vy+=(1/100000)* canvasScaleY;
             }
             tuile2.setTransform(0,hPosTuile2,tuile2.scaleX,tuile2.scaleY);
             tuile1.setTransform(0,hPosTuile1,tuile1.scaleX,tuile1.scaleY);
@@ -420,7 +423,9 @@
                     var posY = -canvas.height*i + ObsPosY[a]*canvas.height/100;
                     var posX = ObsPosX[b]*canvas.width/100;
                     obstcleBleu.setTransform(posX-Q.getResult("ObstacleBleu").width/2,posY-Q.getResult("ObstacleBleu").height/2);
-                    obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width,Q.getResult("ObstacleBleu").height);
+                    obstcleBleu.scaleX = canvasScaleX;
+                    obstcleBleu.scaleY = canvasScaleY;
+                    obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width * obstcleBleu.scaleX,Q.getResult("ObstacleBleu").height*obstcleBleu.scaleY);
                     obs.push(obstcleBleu);
                     terrain.addChild(obstcleBleu);
                     a++;
@@ -441,7 +446,9 @@
                     posX = ObsPosX[a]*canvas.width/100;
                     posY = -canvas.height*i  + ObsPosY[b]*canvas.height/100;
                     obstacleVert.setTransform(posX-Q.getResult("ObstacleVert").width/2,posY-Q.getResult("ObstacleVert").height/2);
-                    obstacleVert.setBounds(obstacleVert.x,obstacleVert.y,Q.getResult("ObstacleVert").width,Q.getResult("ObstacleVert").height);
+                    obstacleVert.scaleX = canvasScaleX;
+                    obstacleVert.scaleY = canvasScaleY;
+                    obstacleVert.setBounds(obstacleVert.x,obstacleVert.y,Q.getResult("ObstacleVert").width*obstacleVert.scaleX ,Q.getResult("ObstacleVert").height * obstacleVert.scaleY);
                     obs.push(obstacleVert);
                     terrain.addChild(obstacleVert);
                     a++;
