@@ -94,8 +94,8 @@
         {id:"BouleDeNeigeF4",src:"./Asset/Graphique/Snowball/Snowball_Grande/snowball_grande_4.png"},
         {id:"ObstacleBleu",src:"./Asset/Graphique/Obstacle/obstacle_glace.png"},
         {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
-        {id:"Olaf",src:"./Asset/Graphique/BarreProgression/Olaf"},
-        {id:"Barre",src:"./Asset/Graphique/BarreProgression/Barre"},
+        {id:"Olaf",src:"./Asset/Graphique/BarreProgression/Olaf.png"},
+        {id:"Barre",src:"./Asset/Graphique/BarreProgression/Barre.png"},
         {id:"fond",src:"./Asset/Sons/DelhaizeSound/Some-Things-Never-Change-From-Frozen-2InstrumentalAudio-Only.ogg"},
        // {id:"boule",src:"./Asset/Sons/DelhaizeSound/GlidingSnowball.ogg"}, 
         {id:"depart",src:"./Asset/Sons/DelhaizeSound/RaceStart.ogg"},
@@ -132,6 +132,7 @@
     // barre
     var barre;
     var avancement;
+    //
     vy = 0.22;
     var appelonce = true;
     var idFrame;
@@ -194,7 +195,6 @@
         canvas.width= window.innerWidth;
         canvas.height= window.innerHeight;
         obstacleL= [];
-        barre = new createjs.Shape();
         scene = new createjs.Stage("monSuperCanvas");
         terrain = new createjs.Container();
         neige = new createjs.Container();
@@ -249,13 +249,15 @@
         neige.y=canvas.height - (boule.getBounds().height/2)*canvasScaleY;
         neige.addChild(boule);
         // init barre
-        barre.graphics.beginFill("rgb(255,0,0)");
-        barre.graphics.drawRect(0,0,50,canvas.height);
-        barre.graphics.endFill();
-        avancement.graphics.beginFill("rgb(0,0,0)");
-        avancement.graphics.drawRect(0,0,50,50);
-        avancement.graphics.endFill();
-        avancement.y = canvas.height-50;
+        barre = new createjs.Bitmap(Q.getResult("Barre"));
+        barre.setBounds(0,0,Q.getResult("Barre").width,Q.getResult("Barre").height);
+        barre.scaleX =  canvasScaleX;
+        barre.scaleY =  canvas.height/Q.getResult("Barre").height;
+        avancement = new createjs.Bitmap(Q.getResult("Olaf"));
+        avancement.setBounds(0,0,Q.getResult("Olaf").width,Q.getResult("Olaf").height);
+        avancement.scaleX = canvasScaleX;
+        avancement.scaleY = canvasScaleY;
+        avancement.y = window.innerHeight ;
         // adding in scene
         scene.addChild(tuile1);
         scene.addChild(tuile2);
