@@ -9,6 +9,7 @@
         <meta property="og:title"         content="Jeu Delhaize Frozen II" />
         <meta property="og:description"   content="You played the Frozen II game from the delhaize website" />
         <meta property="og:image"         content="https://www.journaldugeek.com/content/uploads/2017/04/reine-des-neiges-snowman.jpg" />
+        <link rel="stylesheet" href="senario.css"/>
     </head>
     <body>
         
@@ -18,9 +19,9 @@
         session_start();
         ?>
        <div class='inscription'>
-            <h1 style="font-size:34px;text-decoration: underline;">Inscription</h1>
+            <h1 style="text-decoration: underline;">Inscription</h1>
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA"  method="POST">
-                <p style="font-size:20px;">
+                <p >
                 email : <input type="email" name="user-email" id='mail'/><br/>
                 ticket-id : <input type="txt" name="ticket-id" id='ticketid'/> <br/>
                 ticket-time : <input type="number" name="ticket-time" id='tickettime' /> <br/>

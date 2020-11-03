@@ -1,18 +1,22 @@
 
 button{
-    width: 300px;
-    height: 200px;
-    margin: 18% 5% 5% 5%;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    
 }
 img{
-    width: 275px;
-    height: 183px;
+    width: 100%;
+    height: auto;
    
 }
 body{
     background-color: dimgrey;
 }
 div{
-    margin: 18% 5% 5% 5%;
+    width: 100%;
+    margin: 15% auto 15% auto;
+    align-content: center;
+text-align: center;
 }
 
