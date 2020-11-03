@@ -470,7 +470,7 @@
                     var posY = -canvas.height*i + ObsPosY[a]*canvas.height/100;
                     var posX = ObsPosX[b]*canvas.width/100;
                     obstcleBleu.setTransform(posX-(Q.getResult("ObstacleBleu").width*canvasScaleX/2),posY-(Q.getResult("ObstacleBleu").height*canvasScaleY/2));
-                    obstcleBleu.scaleX = canvasScaleX()
+                    obstcleBleu.scaleX = canvasScaleX;
                     obstcleBleu.scaleY = canvasScaleY;
                     obstcleBleu.setBounds(obstcleBleu.x,obstcleBleu.y,Q.getResult("ObstacleBleu").width * obstcleBleu.scaleX,Q.getResult("ObstacleBleu").height*obstcleBleu.scaleY);
                     obs.push(obstcleBleu);
