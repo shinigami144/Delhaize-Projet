@@ -16,28 +16,41 @@ if(isset($_POST['score'])){
     </head>
     <body>
         <?php
+            echo '<image id="CadrantVertical" src="./Asset/Graphique/AssetsSiteWeb/page_partage/cadre_score_PNG8.png">';
             if ($_SESSION['lan']== 'fr'){
                 echo '<image id="FrozenImage" src="./Asset/Graphique/AssetsSiteWeb/page_partage/logo_frozen2.png">';
                 echo '<image id="TextLangue" src="./Asset/Graphique/AssetsSiteWeb/page_partage/texte_score_fr_PNG8.png">';
                 echo '
-                <div>
+                <div id="Score">
                     <p>'.$score.'</p>
                 </div>';
+                echo '
+                    <div id="Retry">
+                        <a href="./inscription.php"> Rejouer? </a>
+                    </div>';
             }
             else{
-                echo '<image id="FrozenImage" src=./Asset/Graphique/AssetsSiteWeb/page_partage/logo_frozen2.png>';
+                echo '<image id="FrozenImage" src=./Asset/Graphique/AssetsSiteWeb/page_partage/logo_frozen2_engETndl.png>';
                 if($_SESSION['lan']== 'nl'){
                     echo '<image id="TextLangue" src="./Asset/Graphique/AssetsSiteWeb/page_partage/texte_score_ndl_PNG8.png">';
                     echo '
-                    <div>
+                    <div id="Score">
                         <span>'.$score.'</span>
+                    </div>';
+                    echo '
+                    <div id="Retry">
+                        <a href="./Jeu.php"> Retry? </a>
                     </div>';
                 }
                 else{
                     echo '<image id="TextLangue" src="./Asset/Graphique/AssetsSiteWeb/page_partage/texte_score_eng_PNG8.png">';
                     echo '
-                    <div>
+                    <div id="Score">
                         <span>'.$score.'</span>
+                    </div>';
+                    echo '
+                    <div id="Retry">
+                        <a href="./Jeu.php"> Opnieuw ? </a>
                     </div>';
                 }
                 

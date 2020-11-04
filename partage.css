@@ -1,53 +1,159 @@
 
-body{
-    background-image: url('./Asset/Graphique/AssetsSiteWeb/page_partage/background_page_partage_PNG8.png');
-    background-size: 100% 100%;
-}
-#FrozenImage{
-    position: absolute;
-    width: auto;
-    height: auto;
-}
-
-#TextLangue{
-   position: absolute;
-   top:7%;
-   width: 50%;
-   height:15%;
-   left:25%;
-   right:25%;
-}
-
-div{
-    position: absolute;
-    top:23%;
-    left:37%;
-    right:25%;
-    width:30%;
-    height: 30%;
-    text-align: center;
-    align-content: center;
-}
-
-div>span{
-    align-content: center;
-    text-align: center;
-    font-size: 5vw;
-    align-self: center;
-}
-#FacebookButton{
-    position: absolute;
-    width: auto;
-    height: auto;
-    top:45%;
-    left:56%;
-}
-
-#TwiterButton{
-    position: absolute;
+@media screen and (orientation:landscape) {
+    #CadrantVertical{
+        display: none;
+    }
+    body{
+        background-image: url('./Asset/Graphique/AssetsSiteWeb/page_partage/background_page_partage_PNG8.png');
+        background-size: 100% 100%;
+    }
+    #FrozenImage{
+        position: absolute;
+        width: auto;
+        height: auto;
+    }
     
-    width: auto;
-    height: auto;
-    top:40%;
-    right:52%;
+    #TextLangue{
+       position: absolute;
+       top:7%;
+       width: 50%;
+       height:15%;
+       left:25%;
+       right:25%;
+    }
+    
+    #Score{
+        position: absolute;
+        top:23%;
+        left:37%;
+        right:25%;
+        width:30%;
+        height: 30%;
+        text-align: center;
+        align-content: center;
+    }
+    
+    #Score>span{
+        align-content: center;
+        text-align: center;
+        font-size: 5vw;
+        align-self: center;
+    }
+    #FacebookButton{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top:45%;
+        left:56%;
+    }
+    
+    #Retry{
+        position: absolute;
+        top:70%;
+        left:37%;
+        right:25%;
+        width:30%;
+        height: 30%;
+        text-align: center;
+        align-content: center;
+    }
+    
+    div>a{
+        align-content: center;
+        text-align: center;
+        font-size: 5vw;
+        align-self: center;
+        top:60%;
+    
+    }
+    #TwiterButton{
+        position: absolute;
+        
+        width: auto;
+        height: auto;
+        top:40%;
+        right:52%;
+    }
+
+}
+
+
+@media screen and (orientation:portrait) {
+    #CadrantVertical{
+        display: block;
+        position: absolute;
+        top: 27%;
+        left: 37%;
+        width: 30%;
+        height: 15%;
+
+    }
+    body{
+        background-image: url('./Asset/Graphique/AssetsSiteWeb/page_partage/background_page_partage_PNG8.png');
+        background-size: auto 100%;
+    }
+
+    #Score{
+        position: absolute;
+        top:30%;
+        left:37%;
+        right:25%;
+        width:30%;
+        height: auto;
+        text-align: center;
+        align-content: center;
+    }
+    
+    #Score>span{
+        align-content: center;
+        text-align: center;
+        font-size: 5vw;
+        align-self: center;
+    }
+
+    #Retry{
+        position: absolute;
+        top:70%;
+        left:37%;
+        right:25%;
+        width:30%;
+        height: auto;
+        text-align: center;
+        align-content: center;
+    }
+    
+    div>a{
+        align-content: center;
+        text-align: center;
+        font-size: 5vw;
+        align-self: center;
+        top:60%;
+    
+    }
+
+    #TwiterButton{
+        position: absolute;
+        
+        width: auto;
+        height: auto;
+        top:37%;
+        right:52%;
+    }
+
+    #FacebookButton{
+        position: absolute;
+        width: auto;
+        height: auto;
+        top:37%;
+        left:56%;
+    }
+
+    #TextLangue{
+        position: absolute;
+        top:7%;
+        width: 80%;
+        height:20%;
+        left:12%;
+        right:12%;
+     }
 }
