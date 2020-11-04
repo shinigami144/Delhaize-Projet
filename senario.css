@@ -1,6 +1,14 @@
-p{
-    font-size: 18pt;
+
+body{
+    background-image: url("./Asset/Graphique/Interface/tutorial_en_v2_PNG8.png");
+    background-size: 100% 100%;
 }
+
+
+img{
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
 form p{
     font-size: 18pt;
     font-stretch: expanded;
@@ -15,8 +23,7 @@ button{
     margin-top: 8%;
     width: 100%;
     height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
+    width: auto;
 }
 a{
     margin-top: 8%;
@@ -90,45 +97,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-#fb-share-button {
-    background: #3b5998;
-    border-radius: 3px;
-    font-weight: 600;
-    padding: 5px 8px;
-    display: inline-block;
-    position: static;
-    width: 100%;
-    height: 5%;
+@media screen and (orientation:portrait) {
+
 }
 
-#fb-share-button:hover {
-    cursor: pointer;
-    background: #213a6f;
-    width: 100%;
-    height: 5%;
-}
-
-#fb-share-button svg {
-    width: 18px;
-    fill: white;
-    vertical-align: middle;
-    border-radius: 2px;
-}
-
-#fb-share-button span {
-    vertical-align: middle;
-    color: white;
-    font-size: 18px;
-    padding: 0 3px;
-    width: 100%;
-    height: 5%;
-}
-iframe{
-    width:100%;
-    height: auto;
-}
-.twitter-hashtag-button{
-    width:100%;
-    height: 5%;
-}
-    

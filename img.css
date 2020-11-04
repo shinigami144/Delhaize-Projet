@@ -6,7 +6,18 @@ body{
     background-image: url("./Asset/Graphique/AssetsSiteWeb/page_langues/background_page_langue_PNG8.png");
 }
 
+img{
+    width: 100%;
+    height: auto;
+   
+}
+
+
+
 @media screen and (orientation:portrait) {
+    body{
+        background-size: auto 100%;
+    }
     #Group{
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
@@ -30,14 +41,12 @@ body{
         margin: auto;
         
     }
-    img{
-        width: 100%;
-        height: auto;
-       
-    }
 }
 
 @media screen and (orientation:landscape) {
+    body{
+        background-size: 100% 100%;
+    }
     #Group{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -60,11 +69,6 @@ body{
         height: auto;
         margin: auto;
         
-    }
-    img{
-        width: 100%;
-        height: auto;
-       
     }
 }
 
