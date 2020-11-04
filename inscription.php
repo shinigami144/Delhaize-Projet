@@ -12,6 +12,7 @@ session_start();
         <meta property="og:title"         content="Jeu Delhaize Frozen II" />
         <meta property="og:description"   content="You played the Frozen II game from the delhaize website" />
         <meta property="og:image"         content="https://www.journaldugeek.com/content/uploads/2017/04/reine-des-neiges-snowman.jpg" />
+        <link rel="stylesheet" href="senario.css"/>
         <?php if($_SESSION['lan']=='fr'){echo '<title>PAGE INSCRIPTION</title>
         <meta charset="utf-8"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display|Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
@@ -52,7 +53,7 @@ session_start();
 				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="margin-top: 10%;
-            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_ndl_PNG8.png" value="envoyer"/>
         </form>';    
         }else{if($_SESSION['lan']=='fr'){
             echo '
@@ -65,10 +66,10 @@ session_start();
 				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+				<span class="surlignetexte">TEMPS TICKET</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="margin-top: 10%;
-            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_fr_PNG8.png" value="envoyer"/>
         </form>';
         }    
         else{
