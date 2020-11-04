@@ -56,7 +56,7 @@ session_start();
         </form>';    
         }else{if($_SESSION['lan']=='fr'){
             echo '
-            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_PNG8.png"/ style="margin-left: 35%;margin-top:-15%;">
+            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_PNG8.png"/ style="margin-left: 45%;margin-top:-15%;">
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
             <div class="inscription_info">
                 <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
@@ -65,7 +65,7 @@ session_start();
 				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+				<span class="surlignetexte">TEMPS TICKET</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="margin-top: 10%;
             margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
