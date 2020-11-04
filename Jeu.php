@@ -2,15 +2,11 @@
 
 session_start();
 
-$langue = $_POST['langue'];
-
-$_SESSION['lan']= $langue;
-
 ?>
 
 <!DOCTYPE html>
-
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -208,6 +204,8 @@ $_SESSION['lan']= $langue;
     function PreGame(){
         document.addEventListener("click", Click);
         document.addEventListener("touchstart", ClickAndro);
+        var lan = "<?php echo $_SESSION['lan']; ?>"; 
+        console.log(lan);
         canvasScaleX = window.innerWidth/1268.8;
         canvasScaleY = window.innerHeight/792;
         canvas.width= window.innerWidth;
@@ -216,8 +214,20 @@ $_SESSION['lan']= $langue;
         back = new createjs.Bitmap(Q.getResult("Back"));
         back.scaleX = canvasScaleX;
         back.scaleY = canvasScaleY;
-        bouton = new createjs.Bitmap(Q.getResult("PlayFr"));
-        bouton.setBounds(0,0,Q.getResult("PlayFr").width,Q.getResult("PlayFr").height);
+        switch(lan){
+            case "fr":
+                 bouton = new createjs.Bitmap(Q.getResult("PlayFr"));
+                bouton.setBounds(0,0,Q.getResult("PlayFr").width,Q.getResult("PlayFr").height);
+            break;
+            case "en":
+                bouton = new createjs.Bitmap(Q.getResult("PlayEn"));
+                bouton.setBounds(0,0,Q.getResult("PlayEn").width,Q.getResult("PlayEn").height);
+            break;
+            case "nl":
+                bouton = new createjs.Bitmap(Q.getResult("PlayNl"));
+                bouton.setBounds(0,0,Q.getResult("PlayNl").width,Q.getResult("PlayNl").height);
+            break;
+        }
         bouton.x = window.innerWidth/2 - bouton.getBounds().width/2;
         bouton.y = window.innerHeight/2 - bouton.getBounds().height/2;
         scene.addChild(back);
