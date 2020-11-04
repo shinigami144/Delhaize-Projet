@@ -1,144 +1,19 @@
-p{
-    font-size: 18pt;
-}
-form p{
-    font-size: 18pt;
-    font-stretch: expanded;
-}
-form{
-    background-color: cyan;
-    border-radius: 10px;
-    text-align: center;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-}
-button{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-}
-div{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    background-color: cyan;
-}
-a{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    color: white;
-    
-    border-radius: 10px;
-}
-a:visited{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    color: white;
-}
-a button{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    color:white;
-}
-div a{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    color:white;
-    background-color: cyan;
-}
-div iframe{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-}
-.btn-facebook {
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-	color: #fff;
-	background-color: #4C67A1;
-}
-.btn-facebook:hover {
-	color: #fff;
-	background-color: #405D9B;
-}
-.btn-facebook:focus {
-	color: #fff;
-}
-form p button{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-}
-body {
-    margin: 5%;
-    font-family: Helvetica;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+
+body{
+    background-image: url("./Asset/Graphique/Interface/tutorial_en_v2_PNG8.png");
+    background-size: 100% 100%;
 }
 
-#fb-share-button {
-    background: #3b5998;
-    border-radius: 3px;
-    font-weight: 600;
-    padding: 5px 8px;
-    display: inline-block;
-    position: static;
-    width: 100%;
-    height: 5%;
-}
 
-#fb-share-button:hover {
-    cursor: pointer;
-    background: #213a6f;
-    width: 100%;
-    height: 5%;
-}
-
-#fb-share-button svg {
-    width: 18px;
-    fill: white;
-    vertical-align: middle;
-    border-radius: 2px;
-}
-
-#fb-share-button span {
-    vertical-align: middle;
-    color: white;
-    font-size: 18px;
-    padding: 0 3px;
-    width: 100%;
-    height: 5%;
-}
-iframe{
-    width:100%;
+img{
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
     height: auto;
+    width: auto;
 }
-.twitter-hashtag-button{
-    width:100%;
-    height: 5%;
+
+@media screen and (orientation:portrait) {
+
 }
-    
+

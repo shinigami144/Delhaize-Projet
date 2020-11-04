@@ -9,7 +9,7 @@ $score=$_POST['score'];
         <meta property="og:title"         content="Jeu Delhaize Frozen II" />
         <meta property="og:description"   content="You played the Frozen II game from the delhaize website" />
         <meta property="og:image"         content="https://www.journaldugeek.com/content/uploads/2017/04/reine-des-neiges-snowman.jpg" />
-        <link rel="stylesheet" href="senario.css"/>
+        <link rel="stylesheet" href="partageFB.css"/>
     </head>
     <body style="background-color : grey;">
         <form action="inscription.php">
