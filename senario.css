@@ -6,8 +6,6 @@ form p{
     font-stretch: expanded;
 }
 form{
-    background-color: cyan;
-    border-radius: 10px;
     text-align: center;
     margin-left: 10%;
     margin-right: 10%;
@@ -19,14 +17,6 @@ button{
     height: auto;
     font-size: 24pt;
     font-stretch: expanded;
-}
-div{
-    margin-top: 8%;
-    width: 100%;
-    height: auto;
-    font-size: 24pt;
-    font-stretch: expanded;
-    background-color: cyan;
 }
 a{
     margin-top: 8%;
