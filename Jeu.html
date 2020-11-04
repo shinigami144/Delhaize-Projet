@@ -1,4 +1,15 @@
+<?php
+
+session_start();
+
+$langue = $_POST['langue'];
+
+$_SESSION['lan']= $langue;
+
+?>
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,6 +108,10 @@
         {id:"ObstacleVert",src:"./Asset/Graphique/Obstacle/obstacle_sven.png"},
         {id:"Olaf",src:"./Asset/Graphique/BarreProgression/Olaf.png"},
         {id:"Barre",src:"./Asset/Graphique/BarreProgression/Barre.png"},
+        {id:"Back",src:"./Asset/Graphique/AssetsSiteWeb/page_langues/background_page_langue_PNG8.png"},
+        {id:"PlayFr",src:"./Asset/Graphique/Boutons/bouton_jouer_fr_PNG8.png"},
+        {id:"PlayEn",src:"./Asset/Graphique/Boutons/bouton_jouer_eng_PNG8.png"},
+        {id:"PlayNl",src:"./Asset/Graphique/Boutons/bouton_jouer_ndl_PNG8.png"},
         {id:"fond",src:"./Asset/Sons/DelhaizeSound/Some-Things-Never-Change-From-Frozen-2InstrumentalAudio-Only.ogg"},
        // {id:"boule",src:"./Asset/Sons/DelhaizeSound/GlidingSnowball.ogg"}, 
         {id:"depart",src:"./Asset/Sons/DelhaizeSound/RaceStart.ogg"},
@@ -114,6 +129,7 @@
     var scale;
     var SCALEX;
     var SCALEY;
+    var stage=0;
     // tuile
     var hPosTuile1;
     var hPosTuile2;
@@ -169,7 +185,7 @@
     var debug = 1;
     function completeLoading(event){
         canvas = document.getElementById("monSuperCanvas");
-        initGame();
+        PreGame();
        
     }
     
@@ -188,6 +204,27 @@
             idFrame++;
         }
     }
+    
+    function PreGame(){
+        document.addEventListener("click", Click);
+        document.addEventListener("touchstart", ClickAndro);
+        canvasScaleX = window.innerWidth/1268.8;
+        canvasScaleY = window.innerHeight/792;
+        canvas.width= window.innerWidth;
+        canvas.height= window.innerHeight;
+        scene = new createjs.Stage("monSuperCanvas");
+        back = new createjs.Bitmap(Q.getResult("Back"));
+        back.scaleX = canvasScaleX;
+        back.scaleY = canvasScaleY;
+        bouton = new createjs.Bitmap(Q.getResult("PlayFr"));
+        bouton.setBounds(0,0,Q.getResult("PlayFr").width,Q.getResult("PlayFr").height);
+        bouton.x = window.innerWidth/2 - bouton.getBounds().width/2;
+        bouton.y = window.innerHeight/2 - bouton.getBounds().height/2;
+        scene.addChild(back);
+        scene.addChild(bouton);
+        scene.update();
+    }
+    
     function initGame(){
         // init canevas
         document.addEventListener("keydown", down);
@@ -393,6 +430,24 @@
         return positionH;
     }
     /*--------------------------------------------------------------------------------------------------RESET TUILE ZONE---------------------------------------------------------------------------------*/
+    
+    function Click(e){
+        if(stage == 0){
+            if((e.clientX>bouton.x && e.clientX<bouton.x+bouton.getBounds().width)&&((e.clientY>bouton.y && e.clientY<bouton.y+bouton.getBounds().height))){
+                initGame();
+                stage = 1;
+            }
+        }
+    }
+    function ClickAndro(e){
+        if(stage == 0){
+            if((e.touches[0].clientX>bouton.x && e.touches[0].clientX<bouton.x+bouton.getBounds().width)&&((e.touches[0].clientY>bouton.y && e.touches[0].clientY<bouton.y+bouton.getBounds().height))){
+                initGame();
+                stage = 1;
+            }
+        }
+    }
+    
     /*--------------------------------------------------------------------------------------------------INPUT USER ZONE---------------------------------------------------------------------------------*/
     // Movement Function 
     function down(e){
