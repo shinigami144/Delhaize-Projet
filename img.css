@@ -12,6 +12,8 @@ img{
    
 }
 
+
+
 @media screen and (orientation:portrait) {
     body{
         background-size: auto 100%;
