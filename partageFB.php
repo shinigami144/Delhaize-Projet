@@ -22,7 +22,7 @@ if(isset($_POST['score'])){
                 echo '<image id="TextLangue" src="./Asset/Graphique/AssetsSiteWeb/page_partage/texte_score_fr_PNG8.png">';
                 echo '
                 <div id="Score">
-                    <p>'.$score.'</p>
+                    <span>'.$score.'</span>
                 </div>';
                 echo '
                     <div id="Inscription">
