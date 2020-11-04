@@ -45,7 +45,7 @@ img{
 
 @media screen and (orientation:landscape) {
     body{
-        background-size: 100% auto;
+        background-size: 100% 100%;
     }
     #Group{
         display: grid;
