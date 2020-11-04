@@ -33,16 +33,18 @@ session_start();
         input#fname {margin-top: -3%;margin-left: 31%;padding: 2%;width: 100%;
             border: 2px solid #E07B74;font-family: muli;font-size: 12pt;background-color: white;
             color: #484948;height: 60%;}
-        .inscription_main {width: 40%;margin-left: 45%;color:white;font-size: 12pt;font-family: "Muli";margin-top: -2%;}
+        .inscription_main {background-image: url(./Asset/Graphique/AssetsSiteWeb/page_inscription/olaf_et_cadre_inscription_PNG8.png);background-size: 100% 100%;display: block;width: 40%;margin-left: 28%;color: white;font-size: 12pt;font-family: "Muli";margin-top: -10%;padding: 20% 5% 0% 20%;}
         .inscription_info {background-color:white;padding: 1%;margin-top:1%;height: 10%;}
         .surlignetexte {height: auto; box-shadow: 0 -10px  #FFE963 inset;font-family: "mont";color: #484948;font-size: 15pt;text-transform: uppercase;margin-right: 1%;}
+            
         </style>   
     </head>
-    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_inscription_PNG8.png');background-size: 100% 100%;">
+    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_langue_PNG8.png');background-size: 100% 100%;">
         <?php 
         if($_SESSION['lan']=='nl'){
-            echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_ndl_PNG8.png"/ style="margin-left: 45%;margin-top:-10%;">
-            <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
+            echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" />
+            <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" id="form">
+            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_ndl_PNG8.png"/ style="margin-top:-40%;">
             <div class="inscription_info">
                 <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
             </div>
@@ -57,8 +59,9 @@ session_start();
         </form>';    
         }else{if($_SESSION['lan']=='fr'){
             echo '
-            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_PNG8.png"/ style="margin-left: 45%;margin-top:-15%;">
+            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2.png" />
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
+            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_PNG8.png"/ style="margin-top: -50%;margin-left: -40%;margin-right: -40%;padding-right: 20%;">
             <div class="inscription_info">
                 <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
             </div>
@@ -73,8 +76,9 @@ session_start();
         </form>';
         }    
         else{
-            echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_eng_PNG8.png"/ style="margin-left: 45%;margin-top:-15%;">
+            echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" />
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
+            <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_eng_PNG8.png"/ style="margin-top:-40%;">
             <div class="inscription_info">
                 <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mai" id="fname"/>
             </div>
