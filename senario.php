@@ -18,13 +18,17 @@ ga("xmas_2020_game_impression",null);
     {
         echo "
         <body>
-            <img src='./Asset/Graphique/Boutons/bouton_jouer_fr_PNG8.png'>    
+            <a href='./Jeu.php'>
+                <img src='./Asset/Graphique/Boutons/bouton_jouer_fr_PNG8.png' href='./Jeu.php'>
+            </a>
         </body>";
     }
     elseif($_SESSION['lan']== 'nl'){
         echo "
         <body>
-            <img src='./Asset/Graphique/Boutons/bouton_jouer_ndl_PNG8.png'>
+            <a href='./Jeu.php'>
+                <img src='./Asset/Graphique/Boutons/bouton_jouer_ndl_PNG8.png'>
+            </a>
         </body>
         "; 
     }
@@ -32,7 +36,9 @@ ga("xmas_2020_game_impression",null);
         {
         echo " 
         <body>
-            <img src='./Asset/Graphique/Boutons/bouton_jouer_eng_PNG8.png'>
+        <a href='./Jeu.php'>
+            <img src='./Asset/Graphique/Boutons/bouton_jouer_eng_PNG8.png' href='./Jeu.php'>
+        </a>
         </body>             
         ";
         }

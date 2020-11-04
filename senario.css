@@ -1,14 +1,26 @@
 
-body{
-    background-image: url("./Asset/Graphique/Interface/tutorial_en_v2_PNG8.png");
-    background-size: 100% 100%;
+@media screen and (orientation:portrait) {
+    html{
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg); 
+        -moz-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+    } 
 }
 
+body{
+    background-image: url("./Asset/Graphique/AssetsSiteWeb/page_langues/background_page_langue_PNG8.png");
+    background-size: auto 100%;
+}
 
 img{
     position: fixed;
     bottom: 10%;
     right: 10%;
+<<<<<<< HEAD
+}
+=======
 form p{
     font-size: 18pt;
     font-stretch: expanded;
@@ -102,3 +114,4 @@ body {
 
 }
 
+>>>>>>> master

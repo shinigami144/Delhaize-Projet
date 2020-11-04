@@ -12,7 +12,7 @@ session_start();
         <meta property="og:title"         content="Jeu Delhaize Frozen II" />
         <meta property="og:description"   content="You played the Frozen II game from the delhaize website" />
         <meta property="og:image"         content="https://www.journaldugeek.com/content/uploads/2017/04/reine-des-neiges-snowman.jpg" />
-        <!--<link rel="stylesheet" href="senario.css"/>-->
+        <link rel="stylesheet" href="inscription.css"/>
         <?php if($_SESSION['lan']=='fr'){echo '<title>PAGE INSCRIPTION</title>
         <meta charset="utf-8"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display|Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
