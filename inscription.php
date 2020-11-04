@@ -54,8 +54,9 @@ session_start();
             <div class="inscription_info">
 				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
-            <input type="image" form="form" style="margin-top: 10%;
-            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_ndl_PNG8.png" value="envoyer"/>
+            <input type="image" form="form" style="    margin-top: 10%;
+    margin-left: 20%;
+    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_ndl_PNG8.png" value="envoyer"/>
         </form>';    
         }else{if($_SESSION['lan']=='fr'){
             echo '
@@ -71,8 +72,9 @@ session_start();
             <div class="inscription_info">
 				<span class="surlignetexte">TEMPS TICKET</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
-            <input type="image" form="form" style="margin-top: 10%;
-            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_fr_PNG8.png" value="envoyer"/>
+            <input type="image" form="form" style="    margin-top: 10%;
+    margin-left: 20%;
+    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_fr_PNG8.png" value="envoyer"/>
         </form>';
         }    
         else{
@@ -88,8 +90,9 @@ session_start();
             <div class="inscription_info">
 				<span class="surlignetexte">TICKET TIME</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
-            <input type="image" form="form" style="margin-top: 10%;
-            margin-left: 20%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+            <input type="image" form="form" style="    margin-top: 10%;
+    margin-left: 20%;
+    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
         </form>';
         }}
         ?>
