@@ -25,34 +25,22 @@ session_start();
                     <meta charset="utf-8"/>
                     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900&display|Roboto:400,400i,700,700i&display=swap" rel="stylesheet">
                     <link href="https://fonts.googleapis.com/css?family=Nunito|Abril+Fatface|Muli|Creo|Quicksand|Shrikhand|Raleway|Gelasio:700i&display=swap" rel="stylesheet">';
-                }else{echo '<title>ERROR</title>';}}}?>
-        <style>
-        @font-face { font-family: "Mont"; src: url('https://dl.dropboxusercontent.com/s/vycatbfi5hvz7he/Mont-Heavy.otf') ;}
-        body{height: 100%;margin: 0;padding: 0;font-family: Arial, Verdana, sans-serif;
-            font-size: 12px;font-weight: normal;color: #ccc;background-color: #F4F4F4;}
-        input#fname {margin-top: -3%;margin-left: 31%;padding: 2%;width: 100%;
-            border: 2px solid #E07B74;font-family: muli;font-size: 12pt;background-color: white;
-            color: #484948;height: 60%;}
-        .inscription_main {background-image: url(./Asset/Graphique/AssetsSiteWeb/page_inscription/olaf_et_cadre_inscription_PNG8.png);background-size: 100% 100%;display: block;width: 40%;margin-left: 28%;color: white;font-size: 12pt;font-family: "Muli";margin-top: -10%;padding: 20% 5% 0% 20%;}
-        .inscription_info {background-color:white;padding: 1%;margin-top:1%;height: 10%;}
-        .surlignetexte {height: auto; box-shadow: 0 -10px  #FFE963 inset;font-family: "mont";color: #484948;font-size: 15pt;text-transform: uppercase;margin-right: 1%;}
-            
-        </style>   
+                }else{echo '<title>ERROR</title>';}}}?>  
     </head>
-    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_langue_PNG8.png');background-size: 100% 100%;">
+    <body style="">
         <?php 
         if($_SESSION['lan']=='nl'){
             echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" />
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" id="form">
             <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_ndl_PNG8.png"/ style="margin-top:-40%;">
             <div class="inscription_info">
-                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;border-color:red;" type="email" name="user-email" id="mail" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;border-color:red;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+				<span class="surlignetexte">TICKET TIJD</span> <input style="height: 60%;width:65%;border-color:red;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
@@ -64,13 +52,13 @@ session_start();
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
             <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_PNG8.png"/ style="margin-top: -50%;margin-left: -40%;margin-right: -40%;padding-right: 20%;">
             <div class="inscription_info">
-                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mail" id="fname"/>
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;border-color:red;" type="email" name="user-email" id="mail" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;border-color:red;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TEMPS TICKET</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+				<span class="surlignetexte">TEMPS TICKET</span> <input style="height: 60%;width:65%;border-color:red;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
@@ -82,13 +70,13 @@ session_start();
             <form action="envoie.php" app-token="XLGFHEKSPFJTHEPPPA" method="POST" class="inscription_main" style="display:block;" id="form">
             <img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_eng_PNG8.png"/ style="margin-top:-40%;">
             <div class="inscription_info">
-                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;" type="email" name="user-email" id="mai" id="fname"/>
+                <span class="surlignetexte">E-MAIL</span> <input style="width: 75%;height: 60%;border-color:red;" type="email" name="user-email" id="mai" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
+				<span class="surlignetexte">TICKET NUMBER</span> <input style="width: 60%;height: 60%;border-color:red;" type="txt" name="ticket-id" id="ticketid" id="fname"/>
             </div>
             <div class="inscription_info">
-				<span class="surlignetexte">TICKET TIME</span> <input style="height: 60%;width:65%;" type="number" name="ticket-time" id="tickettime" id="fname"/>
+				<span class="surlignetexte">TICKET TIME</span> <input style="height: 60%;width:65%;border-color:red;" type="number" name="ticket-time" id="tickettime" id="fname"/>
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
