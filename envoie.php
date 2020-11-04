@@ -32,73 +32,49 @@ $message4Nl = ' Wil je opnieuw spelen? ' ;
 
 
 <!DOCTYPE html>
-
 <html>
-
-    <head>
+ <head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="envoie.css"/>>
+    <title>Envoie</title>
+</head>
+    <body> 
+    <p id='demo'></p>
+    <div id ="message4">
+        <h1>
+        <?php
+            if ($_SESSION['lan']== 'fr'){
+            echo $message4Fr;
+            }else{if($_SESSION['lan']== 'en'){
+            echo $message4En;
+            }else{if($_SESSION['lan']== 'nl'){
+            echo $message4Nl;
+            }else{echo '';}
+            }}
     
-    <style type="text/css">
+         ?>
 
-    body {
-    background-image: url("Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_inscription_PNG8.png");
-    background-color: #cccccc;
-    color: #a02125;
-    }
-
-    #message4 h1{
-        font-size: 30px;
-        font-weight: bold;
-        color: #d85040;
-    }
-
-    #message4{
-        font-family: 'sans-serif';
-        float: center;
-        margin: 30px 400px -5px 630px;
-    }
-
-
-    #position{
-    
-        float: center;
-        margin: 0px 400px 100px 600px;     
-        
-    }
-
-    button{
-        margin-top: auto;
-        text-align: center;
-        border-radius: 8px;
-        white-space: nowrap;
-        padding: 0;
-        border: none;
-        background: none;
-        margin-left: 114px;
-    }
-
-    #position img {
-
-        
-    display: block;
-    height: 40;  
-    width: 60;
-    }
-
-  
-
-    </style>    
-    
-    </head>
-    
-    <body>
-    
-    <p id='demo'>
-    </p>
-
-
-    <script src="delhaize_ga.js"></script>
-    
-    <script>
+        </h1>
+    </div>
+<div id="position"> 
+    <?php
+        if ($_SESSION['lan']== 'fr'){
+            echo '<a href="Jeu.php"><img src="Asset/Graphique/Boutons/bouton_rejouer_fr_PNG8.png"></a>';
+        }
+        else{
+            if($_SESSION['lan']== 'nl'){
+                echo '<a href="Jeu.php"><img src="Asset/Graphique/Boutons/bouton_rejouer_ndl_PNG8.png"></a>'; 
+            }
+            else{
+                echo '<a href="Jeu.php"><img src="Asset/Graphique/Boutons/bouton_rejouer_eng_PNG8.png"></a>';
+            }
+        }
+        ?>
+    </div>
+</body>
+<script src="delhaize_ga.js"></script>
+<script>
     
     //var parentElement = $(document.body.lastChild).closest('div');
 
@@ -115,21 +91,9 @@ $message4Nl = ' Wil je opnieuw spelen? ' ;
     xhr.open('POST',"http://rashid.fr/lab/ludus/2020-2021/M/GP/api-delhaize/delhaize_api_endpoint.php");
     xhr.onload = function () 
     {
-
-
-    console.log(this.responseText);
-
+        console.log(this.responseText);
         var res = JSON.parse(this.responseText);
         var demo = document.getElementById('demo');
-        demo.style.fontSize = "30px";
-        demo.style.fontFamily = "sans-serif";
-        demo.style.color = "#d85040";
-        demo.style.margin = "200px 400px 0px 560px";
-        demo.style.textAlign= "center";
-        demo.style.fontWeight= "bold";
-
-            //erreur dans les credentials
-
         if (res.error){
             document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> error = "+res.error;
             ga("xmas_2020_game_game_ticket_record_fail",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
@@ -145,14 +109,12 @@ $message4Nl = ' Wil je opnieuw spelen? ' ;
             }}
     
          ?>"
-
-            
-            //inscription réussie : 2 cases winner and !winner 
-            
-        }else{
+            //inscription réussie : 2 cases winner and !winner     
+        }
+        else{
             if(res.winner){
-                //document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
-                //ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
+                document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
+                ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
                 document.getElementById('demo').innerHTML=
                 "<?php
             if ($_SESSION['lan']== 'fr'){
@@ -167,8 +129,8 @@ $message4Nl = ' Wil je opnieuw spelen? ' ;
          ?>"}""
         
             if(!res.winner){
-                //document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
-                //ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
+                document.getElementById('demo').innerHTML="succes = "+ res.success+"<br/> winners = "+res.winner;
+                ga("xmas_2020_game_game_ticket_record_success",{ticketid:'<?php echo $ticketid ?>',time:heure+":"+minute});
                 document.getElementById('demo').innerHTML=
                 "<?php
             if ($_SESSION['lan']== 'fr'){
@@ -188,49 +150,4 @@ $message4Nl = ' Wil je opnieuw spelen? ' ;
     xhr.send(data);
     
     </script>
-    <!-- message multilang..  pour demander si il veut rejouer ... -->
-
-    <div id ="message4">
-        <h1>
-        <?php
-            if ($_SESSION['lan']== 'fr'){
-            echo $message4Fr;
-            }else{if($_SESSION['lan']== 'en'){
-            echo $message4En;
-            }else{if($_SESSION['lan']== 'nl'){
-            echo $message4Nl;
-            }else{echo '';}
-            }}
-    
-         ?>
-
-        </h1>
-    </div>
-<div id="position">
-
-    <form action="index.php">
-         
-         <?php
-            if ($_SESSION['lan']== 'fr'){
-            echo '<button type="submit" id="renaud"><img src="Asset/Graphique/Boutons/bouton_rejouer_fr_PNG8.png"></button>';
-            }else{if($_SESSION['lan']== 'en'){
-            echo '<button type="submit"id="renaud"><img src="Asset/Graphique/Boutons/bouton_rejouer_eng_PNG8.png"></button>';
-            }else{if($_SESSION['lan']== 'nl'){
-            echo '<button type="submit" id="renaud"><img src="Asset/Graphique/Boutons/bouton_rejouer_ndl_PNG8.png"></button>'; 
-            }else{echo 'error please chose a language';}
-            }}
-    
-         ?>
-
-    </form>
-
-    </div>
-
-
-    <?php
-//header("Location: inscription.php");
-?>
-
-
-</body>
 </html>
