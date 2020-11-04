@@ -44,7 +44,7 @@ session_start();
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
-    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_ndl_PNG8.png" value="envoyer"/>
+    margin-bottom: 10%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_ndl_PNG8.png" value="envoyer"/>
         </form>';    
         }else{if($_SESSION['lan']=='fr'){
             echo '
@@ -62,7 +62,7 @@ session_start();
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
-    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_fr_PNG8.png" value="envoyer"/>
+    margin-bottom: 10%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_fr_PNG8.png" value="envoyer"/>
         </form>';
         }    
         else{
@@ -80,7 +80,7 @@ session_start();
             </div>
             <input type="image" form="form" style="    margin-top: 10%;
     margin-left: 20%;
-    margin-bottom: -15%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
+    margin-bottom: 10%;" src="./Asset/Graphique/AssetsSiteWeb/page_inscription/bouton_envoyer_eng_PNG8.png" value="envoyer"/>
         </form>';
         }}
         ?>
