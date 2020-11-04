@@ -227,6 +227,10 @@ session_start();
                 bouton = new createjs.Bitmap(Q.getResult("PlayNl"));
                 bouton.setBounds(0,0,Q.getResult("PlayNl").width,Q.getResult("PlayNl").height);
             break;
+            default:
+                bouton = new createjs.Bitmap(Q.getResult("PlayEn"));
+                bouton.setBounds(0,0,Q.getResult("PlayEn").width,Q.getResult("PlayEn").height);
+            break;
         }
         bouton.x = window.innerWidth/2 - bouton.getBounds().width/2;
         bouton.y = window.innerHeight/2 - bouton.getBounds().height/2;
