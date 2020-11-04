@@ -38,7 +38,7 @@ session_start();
         .surlignetexte {height: auto; box-shadow: 0 -10px  #FFE963 inset;font-family: "mont";color: #484948;font-size: 15pt;text-transform: uppercase;margin-right: 1%;}
         </style>   
     </head>
-    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('/Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_inscription_PNG8.png');background-size: 100% 100%;">
+    <body style="background: linear-gradient(#472234, #1A364B);background-image: url('Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_inscription_PNG8.png');background-size: 100% 100%;">
         <?php 
         if($_SESSION['lan']=='nl'){
             echo '<img src="Asset/Graphique/AssetsSiteWeb/page_inscription/logo_frozen2_eng.png" /><img src="Asset/Graphique/AssetsSiteWeb/page_inscription/texte_inscrivez_vous_ndl_PNG8.png"/ style="margin-left: 45%;margin-top:-10%;">
