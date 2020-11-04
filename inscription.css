@@ -2,6 +2,7 @@ body{
     background: linear-gradient(#472234, #1A364B);
     background-image:url('Asset/Graphique/AssetsSiteWeb/page_inscription/background_page_langue_PNG8.png');
     background-size: 100% 100%;
+    background-repeat: no-repeat;
     height: 100%;
     margin: 0;
     padding: 0;
