@@ -25,7 +25,7 @@ if(isset($_POST['score'])){
                 </div>';
             }
             else{
-                echo '<image id="FrozenImage" src=./Asset/Graphique/AssetsSiteWeb/page_partage/logo_frozen2.png>';
+                echo '<image id="FrozenImage" src=./Asset/Graphique/AssetsSiteWeb/page_partage/logo_frozen2_engETndl.png>';
                 if($_SESSION['lan']== 'nl'){
                     echo '<image id="TextLangue" src="./Asset/Graphique/AssetsSiteWeb/page_partage/texte_score_ndl_PNG8.png">';
                     echo '
