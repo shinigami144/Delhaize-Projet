@@ -25,8 +25,11 @@ if(isset($_POST['score'])){
                     <p>'.$score.'</p>
                 </div>';
                 echo '
+                    <div id="Inscription">
+                        <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_fr_PNG8.png"> </a>
+                    </div>
                     <div id="Retry">
-                        <a href="./inscription.php"> Rejouer? </a>
+                        <a href="./inscription.php"> <image src="./Asset/Graphique/Boutons/bouton_rejouer_fr_PNG8.png"> </a>
                     </div>';
             }
             else{
@@ -38,8 +41,11 @@ if(isset($_POST['score'])){
                         <span>'.$score.'</span>
                     </div>';
                     echo '
+                    <div id="Inscription">
+                        <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_fr_PNG8.png"> </a>
+                    </div>
                     <div id="Retry">
-                        <a href="./Jeu.php"> Retry? </a>
+                        <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_rejouer_ndl_PNG8.png"></a>
                     </div>';
                 }
                 else{
@@ -49,8 +55,11 @@ if(isset($_POST['score'])){
                         <span>'.$score.'</span>
                     </div>';
                     echo '
+                    <div id="Inscription">
+                        <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_fr_PNG8.png"> </a>
+                    </div>
                     <div id="Retry">
-                        <a href="./Jeu.php"> Opnieuw ? </a>
+                        <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_rejouer_eng_PNG8.png"> </a>
                     </div>';
                 }
                 
