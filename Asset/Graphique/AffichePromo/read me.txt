@@ -1,5 +1,0 @@
-Dans ce dossier, ce sont les affiches promotionnelles à mettre sur le site
-
-Il y a une version mobile et une version pc
-
-C'est à partir de là que le joueur pourra se rendre sur la page du jeu lorsqu'il va sur le site de Delhaize
