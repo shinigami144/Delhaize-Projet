@@ -42,7 +42,7 @@ if(isset($_POST['score'])){
                     </div>';
                     echo '
                     <div id="Inscription">
-                        <a href="./inscription.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_fr_PNG8.png"> </a>
+                        <a href="./inscription.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_ndl_PNG8.png"> </a>
                     </div>
                     <div id="Retry">
                         <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_rejouer_ndl_PNG8.png"></a>
@@ -56,7 +56,7 @@ if(isset($_POST['score'])){
                     </div>';
                     echo '
                     <div id="Inscription">
-                        <a href="./inscription.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_fr_PNG8.png"> </a>
+                        <a href="./inscription.php"> <image src="./Asset/Graphique/Boutons/bouton_inscription_eng_PNG8.png"> </a>
                     </div>
                     <div id="Retry">
                         <a href="./Jeu.php"> <image src="./Asset/Graphique/Boutons/bouton_rejouer_eng_PNG8.png"> </a>
